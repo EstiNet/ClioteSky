@@ -4,6 +4,7 @@ import net.estinet.ClioteSky.audio.MakeSound;
 import net.estinet.ClioteSky.commands.Help;
 import net.estinet.ClioteSky.commands.Stop;
 import net.estinet.ClioteSky.configuration.Config;
+import net.estinet.ClioteSky.network.NetworkUtil;
 
 final class Enable {
 	protected void enable(){
@@ -27,6 +28,10 @@ final class Enable {
 		/*
 		 * Startup Listener 
 		 */
+		
+		ClioteSky.println("Opening socket listeners...");
+		NetworkUtil nu = new NetworkUtil();
+		nu.openTCP();
 		
 		/*
 		 * Load Commands 
