@@ -3,8 +3,13 @@ package net.estinet.ClioteSky.configuration;
 import java.io.File;
 import java.io.IOException;
 
+import net.estinet.ClioteSky.EncryptionUtil;
+
 public class Config {
 	public void setConfig(){
+		/*
+		 * File check if exists.
+		 */
 		File f = new File("./Data");
 		File file = new File("./Data/config.dat");
 		File rsa = new File("./RSA");
@@ -19,6 +24,8 @@ public class Config {
 		if(!file.exists()){
 			try {
 				file.createNewFile();
+				EncryptionUtil.generateKey();
+				//Assume that if they don't have the public key they don't have the private key :P
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -37,5 +44,7 @@ public class Config {
 				e.printStackTrace();
 			}
 		}
+		
+		
 	}
 }

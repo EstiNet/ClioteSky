@@ -1,6 +1,9 @@
 package net.estinet.ClioteSky;
 
 public class Cliote {
+	/*
+	 * Connection Object
+	 */
 	private String name = "";
 	private String ip = "127.0.0.1";
 	public Cliote(String connectionname, String connectip){
