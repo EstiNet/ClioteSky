@@ -19,7 +19,8 @@ public class MakeSound {
 	    clip = (Clip) AudioSystem.getLine(info);
 	    clip.open(stream);
 	    clip.start();
-	    
+	    Thread.sleep(6000);
+	    clip.close();
 	}
 	catch (Exception e) {
 		e.printStackTrace();

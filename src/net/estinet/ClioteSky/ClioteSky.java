@@ -6,4 +6,7 @@ public class ClioteSky {
 	public static void println(String output){
 		System.out.println("[System]: " + output);
 	}
+	public static void printSignal(String output){
+		System.out.println("[TCP]: " + output);
+	}
 }
