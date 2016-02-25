@@ -7,15 +7,16 @@ import net.estinet.ClioteSky.ClioteSky;
 import net.estinet.ClioteSky.EncryptionUtil;
 
 public class Config {
+	File f = new File("./Data");
+	File file = new File("./Data/config.properties");
+	File rsa = new File("./RSA");
+	File rsapub = new File("./RSA/public.key");
+	File rsapri = new File("./RSA/private.key");
 	public void setConfig(){
 		/*
 		 * File check if exists.
 		 */
-		File f = new File("./Data");
-		File file = new File("./Data/config.properties");
-		File rsa = new File("./RSA");
-		File rsapub = new File("./RSA/public.key");
-		File rsapri = new File("./RSA/private.key");
+		
 		if(!f.isDirectory()){
 			ClioteSky.println("Creating file ./Data");
 			f.mkdir();
@@ -52,6 +53,15 @@ public class Config {
 		}
 		PropertiesUtil pu = new PropertiesUtil();
 		pu.createFile(file);
+		
+	}
+	public void loadConfig(){
+		/*
+		 * Load configuration (config.properties)
+		 */
+		
+		PropertiesUtil pu = new PropertiesUtil();
+		pu.loadFile(file);
 		
 	}
 }

@@ -18,7 +18,7 @@ public class PropertiesUtil {
 
 			// set the properties value
 			if(prop.getProperty("port").equals(null)){
-				prop.setProperty("port", "26806");
+				prop.setProperty("port", "8600");
 			}
 			// save properties to project root folder
 			prop.store(output, null);
@@ -35,5 +35,8 @@ public class PropertiesUtil {
 			}
 
 		}
+	}
+	protected void loadFile(File f){
+		
 	}
 }
