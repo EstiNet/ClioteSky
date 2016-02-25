@@ -152,7 +152,8 @@ public class EncryptionUtil {
   /**
    * Test the EncryptionUtil
    */
-  public static void main(String[] args) {
+  @SuppressWarnings("resource")
+public static void main(String[] args) {
 
     try {
 
@@ -180,7 +181,7 @@ public class EncryptionUtil {
       System.out.println("Original: " + originalText);
       System.out.println("Encrypted: " +cipherText.toString());
       System.out.println("Decrypted: " + plainText);
-
+      inputStream.close();
     } catch (Exception e) {
       e.printStackTrace();
     }

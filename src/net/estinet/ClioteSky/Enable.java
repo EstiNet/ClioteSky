@@ -38,5 +38,7 @@ final class Enable {
 				cs.start();
 			}
 		});
+		thr.start();
+		ClioteSky.commandid = thr.getId();
 	}
 }
