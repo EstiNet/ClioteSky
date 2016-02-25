@@ -18,11 +18,11 @@ public class Config {
 		 */
 		
 		if(!f.isDirectory()){
-			ClioteSky.println("Creating file ./Data");
+			ClioteSky.println("Creating directory ./Data");
 			f.mkdir();
 		}
 		if(!rsa.isDirectory()){
-			ClioteSky.println("Creating file ./RSA");
+			ClioteSky.println("Creating directory ./RSA");
 			rsa.mkdir();
 		}
 		if(!file.exists()){
