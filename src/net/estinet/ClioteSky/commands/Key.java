@@ -12,9 +12,7 @@ public class Key extends Command{
 	}
 	@Override
 	public void run(List<String> args){
-		System.out.println("-----<Help>-----");
-		for(Command command : ClioteSky.commands){
-			System.out.println(command.getName() + " : " + command.getDescription());
-		}
+		System.out.println("Public Key: " + ClioteSky.publickey);
+		System.out.println("Private Key: " + ClioteSky.privatekey);
 	}
 }

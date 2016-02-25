@@ -1,5 +1,12 @@
 package net.estinet.ClioteSky;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
 import net.estinet.ClioteSky.audio.MakeSound;
 import net.estinet.ClioteSky.commands.Help;
 import net.estinet.ClioteSky.commands.Stop;
@@ -25,6 +32,37 @@ final class Enable {
 		c.setConfig();
 		c.loadConfig();
 		
+		/*
+		 * Sets up RSA encryption variables
+		 */
+		
+		ObjectInputStream inputStream = null;
+	    try {
+			inputStream = new ObjectInputStream(new FileInputStream(EncryptionUtil.PUBLIC_KEY_FILE));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    try {
+			final PublicKey publicKey = (PublicKey) inputStream.readObject();
+			ClioteSky.publickey = publicKey;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    try {
+			inputStream = new ObjectInputStream(new FileInputStream(EncryptionUtil.PRIVATE_KEY_FILE));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    try {
+			final PrivateKey privateKey = (PrivateKey) inputStream.readObject();
+			ClioteSky.privatekey = privateKey;
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
 		/*
 		 * Startup Listener 
 		 */
