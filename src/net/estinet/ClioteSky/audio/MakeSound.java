@@ -19,8 +19,17 @@ public class MakeSound {
 	    clip = (Clip) AudioSystem.getLine(info);
 	    clip.open(stream);
 	    clip.start();
-	    Thread.sleep(6000);
-	    clip.close();
+	    Thread thr = new Thread(new Runnable(){
+	    	public void run(){
+	    		try {
+					Thread.sleep(clip.getMicrosecondLength());
+					 clip.close();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+	    	}
+	    });
+	   thr.start();
 	}
 	catch (Exception e) {
 		e.printStackTrace();

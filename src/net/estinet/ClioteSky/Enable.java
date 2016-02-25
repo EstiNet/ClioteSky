@@ -33,6 +33,10 @@ final class Enable {
 		ClioteSky.state = State.COMMAND;
 		
 		CommandSystem cs = new CommandSystem();
-		cs.start();
+		Thread thr = new Thread(new Runnable(){
+			public void run(){
+				cs.start();
+			}
+		});
 	}
 }
