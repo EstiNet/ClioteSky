@@ -8,7 +8,7 @@ public class CommandSystem {
 			Scanner scan = new Scanner(System.in);
 			String input = scan.nextLine();
 			scan.close();
-			
+			String[] args = input.split("\\s+");
 		}
 	}
 }
