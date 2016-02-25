@@ -50,7 +50,8 @@ public class Config {
 				e.printStackTrace();
 			}
 		}
-		
+		PropertiesUtil pu = new PropertiesUtil();
+		pu.createFile(file);
 		
 	}
 }
