@@ -12,7 +12,7 @@ public class Config {
 		 * File check if exists.
 		 */
 		File f = new File("./Data");
-		File file = new File("./Data/config.dat");
+		File file = new File("./Data/config.properties");
 		File rsa = new File("./RSA");
 		File rsapub = new File("./RSA/public.key");
 		File rsapri = new File("./RSA/private.key");
@@ -26,7 +26,7 @@ public class Config {
 		}
 		if(!file.exists()){
 			try {
-				ClioteSky.println("Creating file ./Data/config.dat");
+				ClioteSky.println("Creating file ./Data/config.properties");
 				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
