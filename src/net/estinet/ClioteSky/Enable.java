@@ -1,6 +1,7 @@
 package net.estinet.ClioteSky;
 
 import net.estinet.ClioteSky.audio.MakeSound;
+import net.estinet.ClioteSky.commands.Help;
 import net.estinet.ClioteSky.configuration.Config;
 
 final class Enable {
@@ -18,6 +19,12 @@ final class Enable {
 		 */
 		Config c = new Config();
 		c.setConfig();
+		
+		/*
+		 * Load Commands 
+		 */
+		
+		ClioteSky.commands.add(new Help());
 		
 		/*
 		 * Start CommandSystem
