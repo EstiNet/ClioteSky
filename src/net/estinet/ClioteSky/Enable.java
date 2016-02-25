@@ -19,5 +19,13 @@ final class Enable {
 		Config c = new Config();
 		c.setConfig();
 		
+		/*
+		 * Start CommandSystem
+		 */
+		
+		ClioteSky.state = State.COMMAND;
+		
+		CommandSystem cs = new CommandSystem();
+		cs.start();
 	}
 }
