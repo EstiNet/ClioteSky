@@ -26,7 +26,7 @@ public class Config {
 		}
 		if(!file.exists()){
 			try {
-				ClioteSky.println("Creating file ./RSA/public.key");
+				ClioteSky.println("Creating file ./Data/config.dat");
 				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -34,17 +34,18 @@ public class Config {
 		}
 		if(!rsapub.exists()){
 			try {
-				ClioteSky.println("Creating file ./RSA/private.key");
+				ClioteSky.println("Creating file ./RSA/public.key");
 				rsapub.createNewFile();
-				EncryptionUtil.generateKey();
-				//Assume that if they don't have the public key they don't have the private key :P
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		if(!rsapri.exists()){
 			try {
+				ClioteSky.println("Creating file ./RSA/private.key");
 				rsapri.createNewFile();
+				EncryptionUtil.generateKey();
+				//Assume that if they don't have the public key they don't have the private key :P
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
