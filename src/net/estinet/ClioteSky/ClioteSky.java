@@ -15,6 +15,7 @@ public class ClioteSky {
 	public static PrivateKey privatekey = null;
 	
 	public static List<Command> commands = new ArrayList<>();
+	public static List<Category> categories = new ArrayList<>();
 	
 	public static void println(String output){
 		System.out.println("[System]: " + output);
