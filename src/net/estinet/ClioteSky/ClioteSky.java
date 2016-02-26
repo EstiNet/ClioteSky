@@ -10,7 +10,7 @@ public class ClioteSky {
 	public static State state = State.ENABLING;
 	public static boolean exit = true;
 	public static long commandid = 0;
-	public static int port = 8600;
+	public static int port = 36000;
 	public static PublicKey publickey = null;
 	public static PrivateKey privatekey = null;
 	
@@ -21,5 +21,19 @@ public class ClioteSky {
 	}
 	public static void printSignal(String output){
 		System.out.println("[TCP]: " + output);
+	}
+	public static String getPublicKey(){
+		String pub = "";
+		for(byte b :  ClioteSky.publickey.getEncoded()){
+			pub += b;
+		}
+		return pub;
+	}
+	public static String getPrivateKey(){
+		String pri = "";
+		for(byte b : ClioteSky.privatekey.getEncoded()){
+			pri += b;
+		}
+		return pri;
 	}
 }

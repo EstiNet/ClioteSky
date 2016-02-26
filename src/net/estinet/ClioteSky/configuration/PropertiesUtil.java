@@ -24,7 +24,7 @@ public class PropertiesUtil {
 			// set the properties value
 			if(!prop.containsKey("port")){
 				ClioteSky.println("Creating field port...");
-				prop.setProperty("port", "8600");
+				prop.setProperty("port", "36000");
 			}
 			// save properties to project root folder
 			prop.store(output, null);

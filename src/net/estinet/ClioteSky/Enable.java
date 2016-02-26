@@ -9,6 +9,7 @@ import java.security.PublicKey;
 
 import net.estinet.ClioteSky.audio.MakeSound;
 import net.estinet.ClioteSky.commands.Help;
+import net.estinet.ClioteSky.commands.Key;
 import net.estinet.ClioteSky.commands.Stop;
 import net.estinet.ClioteSky.configuration.Config;
 import net.estinet.ClioteSky.network.NetworkUtil;
@@ -66,10 +67,14 @@ final class Enable {
 		/*
 		 * Startup Listener 
 		 */
-		
+		Thread thr1 = new Thread(new Runnable(){
+		public void run(){
 		ClioteSky.println("Opening socket listeners...");
 		NetworkUtil nu = new NetworkUtil();
 		nu.openTCP();
+		}
+		});
+		thr1.start();
 		
 		/*
 		 * Load Commands 
@@ -78,6 +83,7 @@ final class Enable {
 		ClioteSky.println("Loading command objects...");
 		ClioteSky.commands.add(new Help());
 		ClioteSky.commands.add(new Stop());
+		ClioteSky.commands.add(new Key());
 		
 		/*
 		 * Start CommandSystem

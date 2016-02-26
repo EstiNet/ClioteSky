@@ -25,7 +25,7 @@ public class NetworkUtil {
 	            
 	            while ((inputLine = in.readLine()) != null) {
 	            	try{
-		                String actual = EncryptionUtil.decrypt(inputLine, ClioteSky.privatekey);
+		                String actual = EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
 	            		de.decode(actual);
 		                // Responds to the client out.println(outputLine);
 	            	}
