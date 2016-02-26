@@ -9,8 +9,8 @@ import net.estinet.ClioteSky.EncryptionUtil;
 public class Config {
 	File f = new File("./Data");
 	File file = new File("./Data/config.properties");
-	File connections = new File("./Connections");
-	File defaultcon = new File("./Connections/Default");
+	File connections = new File("./Cliotes");
+	File defaultcon = new File("./Cliotes/Default");
 	File rsa = new File("./RSA");
 	File rsapub = new File("./RSA/public.key");
 	File rsapri = new File("./RSA/private.key");

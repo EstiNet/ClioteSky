@@ -6,7 +6,7 @@ ClioteSky: Server
 
 
 # Protocol
-The ClioteSky protocol consists of 3 functions. These are commands that are sent to ClioteSky (encrypted with RSA X509) and arguments are parsed between spaces.
+The ClioteSky protocol consists of 5 functions. These are commands that are sent to ClioteSky (encrypted with RSA X509) and arguments are parsed between spaces.
 
 ## Client -> Server
 ### create
@@ -42,3 +42,40 @@ This function is sent to the client every 10 seconds to ensure that the client i
 This function is sent to a client or a group of clients after a client sends a signal to the Category or specific Cliote.
 Format:
 message [Category Recieved From] [Cliote Name Recieved From] [String]
+
+### error
+This function is sent to a client if there is an error with a function sent to the ClioteSky installation. See error codes at the bottom.
+Format:
+error [Code]
+
+# Error Codes
+
+## 1xx
+Errors that are associated with improper syntax.
+
+### 100
+Sent back to client when the function is not recognized.
+
+### 101
+Sent back to client if there are too many, or not enough arguments.
+
+## 2xx
+Errors that are associated with variables sent to ClioteSky.
+
+### 200
+Sent back to client if the category is not recognized.
+
+### 201
+Sent back to client if the Cliote Name is not recognized.
+
+### 202
+Sent back to client if both the category and the Cliote Name isn't recognized.
+
+## 9xx
+Other errors.
+
+### 900
+Sent back to client when the "password" is incorrect.
+
+# Variables
+all: Variable to be used as a category which includes all Cliodes, online and offline.
