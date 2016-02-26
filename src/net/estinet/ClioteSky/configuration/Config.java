@@ -9,6 +9,8 @@ import net.estinet.ClioteSky.EncryptionUtil;
 public class Config {
 	File f = new File("./Data");
 	File file = new File("./Data/config.properties");
+	File connections = new File("./Connections");
+	File defaultcon = new File("./Connections/Default");
 	File rsa = new File("./RSA");
 	File rsapub = new File("./RSA/public.key");
 	File rsapri = new File("./RSA/private.key");
@@ -24,6 +26,14 @@ public class Config {
 		if(!rsa.isDirectory()){
 			ClioteSky.println("Creating directory ./RSA");
 			rsa.mkdir();
+		}
+		if(!connections.isDirectory()){
+			ClioteSky.println("Creating directory ./Connections");
+			connections.mkdir();
+		}
+		if(!defaultcon.isDirectory()){
+			ClioteSky.println("Creating directory ./Connections/Default");
+			defaultcon.mkdir();
 		}
 		if(!file.exists()){
 			try {
