@@ -11,6 +11,7 @@ import net.estinet.ClioteSky.audio.MakeSound;
 import net.estinet.ClioteSky.commands.Help;
 import net.estinet.ClioteSky.commands.Key;
 import net.estinet.ClioteSky.commands.Stop;
+import net.estinet.ClioteSky.configuration.Categories;
 import net.estinet.ClioteSky.configuration.Config;
 import net.estinet.ClioteSky.network.NetworkUtil;
 
@@ -37,7 +38,8 @@ final class Enable {
 		 * Load Serializer
 		 */
 		
-		
+		Categories cat = new Categories();
+		cat.load();
 		
 		/*
 		 * Sets up RSA encryption variables

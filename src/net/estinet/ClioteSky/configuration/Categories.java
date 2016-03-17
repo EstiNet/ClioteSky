@@ -26,20 +26,13 @@ public class Categories {
 			Category cat = new Category(file.getName());
 			for(File cliotes : file.listFiles()){
 				try{
-
-
 					Properties prop = new Properties();
 					InputStream input = null;
-
 					try {
-
 						input = new FileInputStream(cliotes.getPath());
-
 						prop.load(input);
-
 						Cliote cliote = new Cliote(prop.getProperty("name"), prop.getProperty("ip"), prop.getProperty("port"));
 						cat.addCliote(cliote);
-
 					} catch (IOException ex) {
 						ex.printStackTrace();
 					} finally {
