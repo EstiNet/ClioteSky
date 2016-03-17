@@ -6,9 +6,13 @@ public class Decosion {
 		switch(args[0]){
 		case "create": 
 			break;
+		case "change": 
+			break;
 		case "send":
 			break;
 		case "alive":
+			break;
+		case "hello":
 			break;
 		}
 	}

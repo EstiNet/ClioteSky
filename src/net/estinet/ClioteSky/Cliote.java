@@ -1,6 +1,12 @@
 package net.estinet.ClioteSky;
 
-public class Cliote {
+import java.io.Serializable;
+
+public class Cliote implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1613981352507093670L;
 	/*
 	 * Connection Object
 	 */

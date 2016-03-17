@@ -28,11 +28,11 @@ public class Config {
 			rsa.mkdir();
 		}
 		if(!connections.isDirectory()){
-			ClioteSky.println("Creating directory ./Connections");
+			ClioteSky.println("Creating directory ./Cliotes");
 			connections.mkdir();
 		}
 		if(!defaultcon.isDirectory()){
-			ClioteSky.println("Creating directory ./Connections/Default");
+			ClioteSky.println("Creating directory ./Cliotes/Default");
 			defaultcon.mkdir();
 		}
 		if(!file.exists()){

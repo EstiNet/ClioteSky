@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class CommandSystem {
 	Scanner scan = new Scanner(System.in);
 	protected void start(){
-			System.out.print("\n> ");
+			System.out.print("\n>");
 			String input = scan.nextLine();
 			String[] args = input.split("\\s+");
 			List<String> argss = new ArrayList<>();	

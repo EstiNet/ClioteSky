@@ -1,9 +1,14 @@
 package net.estinet.ClioteSky;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category {
+public class Category implements Serializable{
+	/**
+	 * Category to store Cliotes
+	 */
+	private static final long serialVersionUID = 7917049985137261145L;
 	private String name;
 	private List<Cliote> cliotes = new ArrayList<>();
 	
