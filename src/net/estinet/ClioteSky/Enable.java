@@ -34,6 +34,12 @@ final class Enable {
 		c.loadConfig();
 		
 		/*
+		 * Load Serializer
+		 */
+		
+		
+		
+		/*
 		 * Sets up RSA encryption variables
 		 */
 		
