@@ -1,5 +1,5 @@
 package net.estinet.ClioteSky.network.protocol.input;
 
-public class Hello {
+public class InputHello {
 
 }
