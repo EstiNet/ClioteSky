@@ -1,8 +1,9 @@
 package net.estinet.ClioteSky.network.protocol.input;
 
+import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
 
-public class InputChange implements Packet {
+public class InputChange extends InputPacket implements Packet {
 
 	@Override
 	public void run() {

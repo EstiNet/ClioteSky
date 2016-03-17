@@ -5,6 +5,9 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.estinet.ClioteSky.network.protocol.InputPacket;
+import net.estinet.ClioteSky.network.protocol.OutputPacket;
+
 public class ClioteSky {
 	public static String version = "0.0.3-BETA";
 	public static State state = State.ENABLING;
@@ -16,6 +19,9 @@ public class ClioteSky {
 	
 	public static List<Command> commands = new ArrayList<>();
 	public static List<Category> categories = new ArrayList<>();
+	
+	public static List<InputPacket> inputPackets = new ArrayList<>();
+	public static List<OutputPacket> outputPackets = new ArrayList<>();
 	
 	public static void println(String output){
 		System.out.println("[System]: " + output);
