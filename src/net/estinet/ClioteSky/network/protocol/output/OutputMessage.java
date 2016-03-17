@@ -1,13 +1,14 @@
 package net.estinet.ClioteSky.network.protocol.output;
 
+import java.util.List;
+
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
 
 public class OutputMessage extends OutputPacket implements Packet {
 
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
+	public void run(List<String> args) {
 		
 	}
 
