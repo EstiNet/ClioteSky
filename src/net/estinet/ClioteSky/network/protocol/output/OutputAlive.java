@@ -1,5 +1,11 @@
 package net.estinet.ClioteSky.network.protocol.output;
 
-public class OutputAlive {
+import net.estinet.ClioteSky.network.protocol.Packet;
+
+public class OutputAlive implements Packet{
+
+	@Override
+	public void run() {
+	}
 
 }

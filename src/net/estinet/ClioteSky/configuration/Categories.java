@@ -15,6 +15,7 @@ import net.estinet.ClioteSky.ClioteSky;
 public class Categories {
 	public void load(){
 		File f = new File("./Cliotes");
+		
 		String[] directories = f.list();
 		List<File> categories = new ArrayList<>();
 		for(String direct : directories){

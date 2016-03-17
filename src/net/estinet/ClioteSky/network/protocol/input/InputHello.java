@@ -1,5 +1,13 @@
 package net.estinet.ClioteSky.network.protocol.input;
 
-public class InputHello {
+import net.estinet.ClioteSky.network.protocol.Packet;
+
+public class InputHello implements Packet {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
