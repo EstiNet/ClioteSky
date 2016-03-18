@@ -15,47 +15,60 @@ import net.estinet.ClioteSky.network.protocol.Decosion;
 
 public class NetworkUtil {
 	public void openTCP(){
-		 try ( 
-		      ServerSocket serverSocket = new ServerSocket(ClioteSky.port);
-		      Socket clientSocket = serverSocket.accept();
-			  PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-		      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) 
-		 {	         
-	            String inputLine, outputLine;
-	            
-	            Decosion de = new Decosion();
-	            
-	            while ((inputLine = in.readLine()) != null) {
-	            	try{
-	            		ClioteSky.printSignal("Signal recieved from " + clientSocket.getLocalAddress() + ":" + Integer.toString(clientSocket.getPort()) + " with query " + inputLine);
-	            		boolean done = false;
-		                String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
-		                for(Category category : ClioteSky.categories){
-		                	for(Cliote cliote : category.getCliotes()){
-		                		if(cliote.getIsOnline()){
-		                			if(cliote.getIP().equals(clientSocket.getLocalAddress().getHostAddress()) && cliote.getPort().equals(Integer.toString(clientSocket.getPort()))){
-		                				de.decode(actual, cliote);
-		                				done = true;
-		                			}
-		                		}
-		                	}
-		                }
-		                if(!done){
-		                	System.out.println("Decode");
-		                	de.decode(actual, new Cliote("unknown", clientSocket.getLocalAddress().getHostAddress(), Integer.toString(clientSocket.getPort())));
-		                }
-	            	}
-	            	catch(Exception e){
-	            		System.out.println("Oops! Connection exception. :/");
-			            System.out.println(e.getMessage());
-	            	}
-	            }
-		        } catch (IOException e) {
-		            System.out.println("Oops! Connection exception. :/");
-		            System.out.println(e.getMessage());
-		        }
+		try ( 
+				ServerSocket serverSocket = new ServerSocket(ClioteSky.port);
+				Socket clientSocket = serverSocket.accept();
+				PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) 
+		{	         
+			String inputLine, outputLine;
+
+			Decosion de = new Decosion();
+
+			while ((inputLine = in.readLine()) != null) {
+				try{
+					ClioteSky.printSignal("Signal recieved from " + clientSocket.getLocalAddress() + ":" + Integer.toString(clientSocket.getPort()) + " with query " + inputLine);
+					boolean done = false;
+					String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
+					for(Category category : ClioteSky.categories){
+						for(Cliote cliote : category.getCliotes()){
+							if(cliote.getIsOnline()){
+								if(cliote.getIP().equals(clientSocket.getLocalAddress().getHostAddress()) && cliote.getPort().equals(Integer.toString(clientSocket.getPort()))){
+									de.decode(actual, cliote);
+									done = true;
+								}
+							}
+						}
+					}
+					if(!done){
+						System.out.println("Decode");
+						de.decode(actual, new Cliote("unknown", clientSocket.getLocalAddress().getHostAddress(), Integer.toString(clientSocket.getPort())));
+					}
+				}
+				catch(Exception e){
+					System.out.println("Oops! Connection exception. :/");
+					System.out.println(e.getMessage());
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Oops! Connection exception. :/");
+			System.out.println(e.getMessage());
+		}
 	}
 	public void closeTCP(){
-		
+
+	}
+	public void sendOutput(Cliote cliote, String output){
+		try{
+			ServerSocket serverSocket = new ServerSocket(0);
+			Socket clientSocket = serverSocket.accept();
+			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+			//ADD ENCRYPTION HERE WHEN READY :D
+			out.write(output);
+			serverSocket.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }
