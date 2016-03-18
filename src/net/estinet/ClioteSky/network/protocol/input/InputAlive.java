@@ -17,6 +17,7 @@ public class InputAlive extends InputPacket implements Packet {
 	
 	@Override
 	public void run(List<String> args, Cliote sender) {
+		System.out.println("ALIEV");
 		if(args.size() > 0){
 			try{
 				throw new IncorrectArgumentsException101();

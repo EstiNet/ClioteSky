@@ -27,10 +27,9 @@ public class NetworkUtil {
 	            
 	            while ((inputLine = in.readLine()) != null) {
 	            	try{
-	            		ClioteSky.printSignal("Signal recieved from " + clientSocket.getLocalAddress() + ":" + Integer.toString(clientSocket.getPort()));
+	            		ClioteSky.printSignal("Signal recieved from " + clientSocket.getLocalAddress() + ":" + Integer.toString(clientSocket.getPort()) + " with query " + inputLine);
 	            		boolean done = false;
-		                String actual = EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
-		                System.out.println(new String(inputLine.getBytes()));
+		                String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
 		                for(Category category : ClioteSky.categories){
 		                	for(Cliote cliote : category.getCliotes()){
 		                		if(cliote.getIsOnline()){
@@ -42,6 +41,7 @@ public class NetworkUtil {
 		                	}
 		                }
 		                if(!done){
+		                	System.out.println("Decode");
 		                	de.decode(actual, new Cliote("unknown", clientSocket.getLocalAddress().getHostAddress(), Integer.toString(clientSocket.getPort())));
 		                }
 	            	}

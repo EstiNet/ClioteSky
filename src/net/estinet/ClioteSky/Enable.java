@@ -15,6 +15,14 @@ import net.estinet.ClioteSky.commands.Stop;
 import net.estinet.ClioteSky.configuration.Categories;
 import net.estinet.ClioteSky.configuration.Config;
 import net.estinet.ClioteSky.network.NetworkUtil;
+import net.estinet.ClioteSky.network.protocol.input.InputAlive;
+import net.estinet.ClioteSky.network.protocol.input.InputChange;
+import net.estinet.ClioteSky.network.protocol.input.InputCreate;
+import net.estinet.ClioteSky.network.protocol.input.InputHello;
+import net.estinet.ClioteSky.network.protocol.input.InputSend;
+import net.estinet.ClioteSky.network.protocol.output.OutputAlive;
+import net.estinet.ClioteSky.network.protocol.output.OutputError;
+import net.estinet.ClioteSky.network.protocol.output.OutputMessage;
 
 final class Enable {
 	protected void enable(){
@@ -34,6 +42,20 @@ final class Enable {
 		Config c = new Config();
 		c.setConfig();
 		c.loadConfig();
+		
+		/*
+		 * Load Input and Output Streams
+		 */
+		
+		ClioteSky.inputPackets.add(new InputAlive());
+		ClioteSky.inputPackets.add(new InputChange());
+		ClioteSky.inputPackets.add(new InputCreate());
+		ClioteSky.inputPackets.add(new InputHello());
+		ClioteSky.inputPackets.add(new InputSend());
+		
+		ClioteSky.outputPackets.add(new OutputAlive());
+		ClioteSky.outputPackets.add(new OutputError());
+		ClioteSky.outputPackets.add(new OutputMessage());
 		
 		/*
 		 * Load Serializer
