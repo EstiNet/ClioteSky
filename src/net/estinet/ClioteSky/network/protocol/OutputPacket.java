@@ -5,7 +5,7 @@ import java.util.List;
 import net.estinet.ClioteSky.Cliote;
 
 public class OutputPacket implements Packet{
-	private String name, usage;
+	private String name, usage, description;
 	
 	public String getName() {
 		return name;

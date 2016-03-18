@@ -5,8 +5,14 @@ import java.util.List;
 import net.estinet.ClioteSky.Cliote;
 
 public class InputPacket implements Packet{
-	private String name, usage;
+	private String name, usage, description;
 	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getName() {
 		return name;
 	}
