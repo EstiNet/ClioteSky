@@ -71,6 +71,15 @@ Sent back to client if the Cliote Name is not recognized.
 ### 202
 Sent back to client if both the category and the Cliote Name isn't recognized.
 
+## 3xx
+Errors that are associated with Cliote creation.
+
+### 300
+Sent back to client if the category is not recognized.
+
+### 301
+Sent back to client if the Cliote name is already used.
+
 ## 9xx
 Other errors.
 

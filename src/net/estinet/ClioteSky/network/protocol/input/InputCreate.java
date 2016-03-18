@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.estinet.ClioteSky.Cliote;
+import net.estinet.ClioteSky.ClioteSky;
 import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
-import net.estinet.ClioteSky.exceptions.RegisterFirstException901;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
 import net.estinet.ClioteSky.network.protocol.output.OutputError;
@@ -20,27 +20,22 @@ public class InputCreate extends InputPacket implements Packet {
 
 	@Override
 	public void run(List<String> args, Cliote sender) {
-		if(sender.getName().equals("unknown")){
+		if(args.size() != 3){
 			try{
-				throw new RegisterFirstException901();
+				throw new IncorrectArgumentsException101();
 			}
-			catch(RegisterFirstException901 e){
-
+			catch(IncorrectArgumentsException101 e){
+				e.printStackTrace();
+				OutputError oe = new OutputError();
+				oe.run(Arrays.asList("101"), sender);
 			}
 		}
 		else{
-			if(args.size() != 3){
+			String newClioteName = args.get(0), categoryToJoin = args.get(1), password = args.get(2);
+			if(ClioteSky.getCliote(newClioteName) != null){
 				try{
-					throw new IncorrectArgumentsException101();
+					throw new 
 				}
-				catch(IncorrectArgumentsException101 e){
-					e.printStackTrace();
-					OutputError oe = new OutputError();
-					oe.run(Arrays.asList("101"), sender);
-				}
-			}
-			else{
-
 			}
 		}
 	}
