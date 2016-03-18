@@ -1,11 +1,13 @@
 package net.estinet.ClioteSky.network.protocol.input;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
+import net.estinet.ClioteSky.network.protocol.output.OutputError;
 
 public class InputAlive extends InputPacket implements Packet {
 
@@ -23,6 +25,8 @@ public class InputAlive extends InputPacket implements Packet {
 			}
 			catch(IncorrectArgumentsException101 e){
 				e.printStackTrace();
+				OutputError oe = new OutputError();
+				oe.run(Arrays.asList("101"), sender);
 			}
 		}
 		else{

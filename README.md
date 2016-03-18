@@ -77,5 +77,8 @@ Other errors.
 ### 900
 Sent back to client when the "password" is incorrect.
 
+### 901
+Sent back to client when the client tries to execute a query before registering.
+
 # Variables
 all: Variable to be used as a category which includes all Cliodes, online and offline.

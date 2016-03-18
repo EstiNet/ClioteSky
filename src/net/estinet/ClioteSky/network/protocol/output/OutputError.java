@@ -19,6 +19,7 @@ public class OutputError extends OutputPacket implements Packet {
 	public void run(List<String> args, Cliote sender) {
 		try{
 		NetworkUtil nu = new NetworkUtil();
+		System.out.println("[Error] Error code " + args.get(0) + " being sent to " + sender.getIP());
 		switch(Integer.parseInt(args.get(0))){
 		case 100:
 			nu.sendOutput(sender, "100");
@@ -37,6 +38,9 @@ public class OutputError extends OutputPacket implements Packet {
 			break;
 		case 900:
 			nu.sendOutput(sender, "900");
+			break;
+		case 901:
+			nu.sendOutput(sender, "901");
 			break;
 		}
 		}
