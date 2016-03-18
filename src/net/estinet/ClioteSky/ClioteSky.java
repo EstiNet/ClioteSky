@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.estinet.ClioteSky.network.ClioteSocket;
+import net.estinet.ClioteSky.network.NetworkUtil;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
 
@@ -49,7 +50,14 @@ public class ClioteSky {
 			}
 		}
 	}
-	
+	public static ClioteSocket getClioteSocket(Cliote cliote){
+		for(ClioteSocket cs : connections){
+			if(NetworkUtil.getIP(cs.getSocket()).equals(cliote.getIP())){
+				return cs;
+			}
+		}
+		return null;
+	}
 	public static void println(String output){
 		System.out.println("[System]: " + output);
 	}

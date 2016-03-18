@@ -19,7 +19,7 @@ public class OutputAlive extends OutputPacket implements Packet{
 	@Override
 	public void run(List<String> args, Cliote sender) {
 		NetworkUtil nu = new NetworkUtil();
-		nu.sendOutput(sender, "alive");
+		nu.sendOutput(ClioteSky.getClioteSocket(sender), "alive");
 		Thread thr = new Thread(new Runnable(){
 			public void run(){
 				try {

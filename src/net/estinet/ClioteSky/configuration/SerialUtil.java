@@ -24,6 +24,11 @@ public class SerialUtil {
 				}
 			}
 			File f = new File("./Cliotes/" + category.getName() + "/" + cliote.getName() + ".properties");
+			try {
+				f.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			ClioteSky.println("Creating Cliote " + cliote.getName());
 			Properties prop = new Properties();
 			OutputStream output = null;
@@ -37,6 +42,7 @@ public class SerialUtil {
 				prop.setProperty("name", cliote.getName());
 				prop.setProperty("ip", cliote.getIP());
 				prop.setProperty("port", cliote.getPort());
+				prop.setProperty("password", cliote.getPassword());
 				// save properties to project root folder
 				prop.store(output, null);
 
