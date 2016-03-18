@@ -15,9 +15,10 @@ public class CreateCategory extends Command{
 	@Override
 	public void run(List<String> args){
 		try{
-		File f = new File("./Cliotes/" + args.get(0));
+		File f = new File("./Cliotes/" + args.get(1));
 		f.mkdir();
-		ClioteSky.categories.add(new Category(args.get(0)));
+		ClioteSky.categories.add(new Category(args.get(1)));
+		ClioteSky.println("Created category " + args.get(1));
 		}
 		catch(Exception e){
 			System.out.println("Something is wrong with your input! Try again. :P");
