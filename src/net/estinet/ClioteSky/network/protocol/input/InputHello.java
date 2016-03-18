@@ -66,6 +66,9 @@ public class InputHello extends InputPacket implements Packet {
 							oe.run(Arrays.asList("900"), sender);
 						}
 					}
+					else{
+						ClioteSky.println("Cliote " + sender.getName() + " has logged into ClioteSky.");
+					}
 				}
 			}
 		}
