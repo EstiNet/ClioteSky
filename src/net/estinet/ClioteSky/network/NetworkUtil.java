@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import net.estinet.ClioteSky.Category;
+import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
 import net.estinet.ClioteSky.EncryptionUtil;
 import net.estinet.ClioteSky.network.protocol.Decosion;
@@ -26,8 +28,12 @@ public class NetworkUtil {
 	            while ((inputLine = in.readLine()) != null) {
 	            	try{
 		                String actual = EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
-	            		de.decode(actual);
-		                // Responds to the client out.println(outputLine);
+		                for(Category category : ClioteSky.categories){
+		                	for(Cliote cliote : category.getCliotes()){
+		                		
+		                	}
+		                }
+	            		de.decode(actual, new Cliote("unknown", clientSocket.getLocalAddress().getHostAddress(), Integer.toString(clientSocket.getPort())));
 	            	}
 	            	catch(Exception e){
 	            		System.out.println("Oops! Connection exception. :/");

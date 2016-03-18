@@ -8,9 +8,10 @@ import net.estinet.ClioteSky.network.protocol.Packet;
 
 public class OutputMessage extends OutputPacket implements Packet {
 
-	public InputAlive(){
-		super.setName("Alive");
-		super.setUsage("Common \"keep-alive\" signals sent to the client must be responded with an \"alive\" function. If the message is not responded within 5 seconds, the Cliote will be marked as offline.");
+	public OutputMessage(){
+		super.setName("message");
+		super.setDescription("This function is sent to a client or a group of clients after a client sends a signal to the Category or specific Cliote.");
+		super.setFormat("message [Category Recieved From] [Cliote Name Recieved From] [String]");
 	}
 	
 	@Override

@@ -5,7 +5,7 @@ import java.util.List;
 import net.estinet.ClioteSky.Cliote;
 
 public class OutputPacket implements Packet{
-	private String name, usage, description;
+	private String name, format, description;
 	
 	public String getDescription() {
 		return description;
@@ -19,11 +19,11 @@ public class OutputPacket implements Packet{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getUsage() {
-		return usage;
+	public String getFormat() {
+		return format;
 	}
-	public void setUsage(String usage) {
-		this.usage = usage;
+	public void setFormat(String format) {
+		this.format = format;
 	}
 	public void run(List<String> args, Cliote sender) {
 		
