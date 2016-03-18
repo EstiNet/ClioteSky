@@ -15,7 +15,7 @@ import net.estinet.ClioteSky.ClioteSky;
 public class Categories {
 	public void load(){
 		File f = new File("./Cliotes");
-		
+
 		String[] directories = f.list();
 		List<File> categories = new ArrayList<>();
 		for(String direct : directories){
@@ -32,7 +32,7 @@ public class Categories {
 					try {
 						input = new FileInputStream(cliotes.getPath());
 						prop.load(input);
-						Cliote cliote = new Cliote(prop.getProperty("name"), prop.getProperty("ip"), prop.getProperty("port"));
+						Cliote cliote = new Cliote(prop.getProperty("name"), prop.getProperty("ip"), prop.getProperty("port"), prop.getProperty("password"));
 						cat.addCliote(cliote);
 					} catch (IOException ex) {
 						ex.printStackTrace();
@@ -54,5 +54,24 @@ public class Categories {
 			ClioteSky.categories.add(cat);
 		}
 
+	}
+	public void flush(Cliote cliote){
+		Category take = null;
+		for(Category category : ClioteSky.categories){
+			for(Cliote cliotet : category.getCliotes()){
+				if(cliotet.getName().equals(cliote.getName())){
+					take = category;
+				}
+			}
+		}
+		try{
+			File f = new File("./Cliotes/" + take.getName());
+			f.delete();
+			SerialUtil su = new SerialUtil();
+			su.createCliote(take, cliote);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }

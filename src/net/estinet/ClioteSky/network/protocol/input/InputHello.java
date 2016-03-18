@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
+import net.estinet.ClioteSky.configuration.Categories;
 import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
 import net.estinet.ClioteSky.exceptions.NameNotKnownException201;
 import net.estinet.ClioteSky.exceptions.PasswordIncorrectException900;
@@ -71,6 +72,8 @@ public class InputHello extends InputPacket implements Packet {
 						ClioteSky.getCliote(sender.getName()).setIsOnline(true);
 						ClioteSky.getCliote(sender.getName()).setIP(NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()));
 						ClioteSky.getCliote(sender.getName()).setPort(Integer.toString(ClioteSky.getClioteSocket(sender).getSocket().getPort()));
+						Categories cat = new Categories();
+						cat.flush(ClioteSky.getCliote(sender.getName()));
 						ClioteSky.println("Cliote " + sender.getName() + " has logged into ClioteSky.");
 					}
 				}
