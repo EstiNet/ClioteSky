@@ -2,6 +2,8 @@ package net.estinet.ClioteSky.network.protocol;
 
 import java.util.List;
 
+import net.estinet.ClioteSky.Cliote;
+
 public class OutputPacket implements Packet{
 	private String name, usage;
 	
@@ -17,7 +19,7 @@ public class OutputPacket implements Packet{
 	public void setUsage(String usage) {
 		this.usage = usage;
 	}
-	public void run(List<String> args) {
+	public void run(List<String> args, Cliote sender) {
 		
 	}
 
