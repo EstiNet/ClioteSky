@@ -10,7 +10,8 @@ public class InputChange extends InputPacket implements Packet {
 
 	public InputChange(){
 		super.setName("change");
-		super.setUsage("Common \"keep-alive\" signals sent to the client must be responded with an \"alive\" function. If the message is not responded within 5 seconds, the Cliote will be marked as offline.");
+		super.setDescription("The change function changes a Cliote's setting. The IP of the client will be changed as well as the category. The name cannot be changed.");
+		super.setUsage("change [Cliote Name] [Category] [Password]");
 	}
 	
 	@Override
