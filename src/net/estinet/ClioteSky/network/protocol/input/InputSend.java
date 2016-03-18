@@ -35,7 +35,7 @@ public class InputSend extends InputPacket implements Packet {
 			}
 		}
 		else{
-			if(args.size() != 2){
+			if(args.size() < 2){
 				try{
 					throw new IncorrectArgumentsException101();
 				}

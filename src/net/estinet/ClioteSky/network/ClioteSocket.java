@@ -31,7 +31,7 @@ public class ClioteSocket extends Thread{
 			if(inputLine == null){
 				close++;
 			}
-			if(close > 3){
+			if(close > 1){
 				for(int i = 0; i < ClioteSky.categories.size(); i++){
 					for(int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++){
 						if(ClioteSky.categories.get(i).getCliotes().get(i).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(i).getPort().equals(socket.getPort())){
@@ -50,12 +50,15 @@ public class ClioteSocket extends Thread{
 						if(cliote.getIP().equals(NetworkUtil.getIP(socket)) && cliote.getPort().equals(Integer.toString(socket.getPort()))){
 							de.decode(actual, cliote);
 							done = true;
+							break;
 						}
 				}
 			}
 			if(!done){
 				de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
 			}
+			ClioteSky.connections.remove(this);
+			ClioteSky.connections.add(this);
 		}
 		catch(Exception e){
 			System.out.println("Oops! Connection exception. :/");

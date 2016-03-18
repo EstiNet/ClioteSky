@@ -8,6 +8,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 import net.estinet.ClioteSky.audio.MakeSound;
+import net.estinet.ClioteSky.commands.ClioteSockets;
 import net.estinet.ClioteSky.commands.Cliotes;
 import net.estinet.ClioteSky.commands.CreateCategory;
 import net.estinet.ClioteSky.commands.Encrypt;
@@ -110,6 +111,7 @@ final class Enable {
 		ClioteSky.commands.add(new Encrypt());
 		ClioteSky.commands.add(new Cliotes());
 		ClioteSky.commands.add(new CreateCategory());
+		ClioteSky.commands.add(new ClioteSockets());
 		
 		/*
 		 * Start CommandSystem
