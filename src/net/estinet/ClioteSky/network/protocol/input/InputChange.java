@@ -63,7 +63,7 @@ public class InputChange extends InputPacket implements Packet {
 					boolean bool = false;
 					for(Category categorys : ClioteSky.categories){
 						if(categorys.getName().equals(category)){
-							bool = false;
+							bool = true;
 						}
 					}
 					if(bool){

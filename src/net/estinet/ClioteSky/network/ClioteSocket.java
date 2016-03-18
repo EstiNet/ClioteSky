@@ -59,7 +59,7 @@ public class ClioteSocket extends Thread{
 		}
 		catch(Exception e){
 			System.out.println("Oops! Connection exception. :/");
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		}
     }

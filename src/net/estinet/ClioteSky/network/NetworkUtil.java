@@ -22,12 +22,13 @@ public class NetworkUtil {
 				clientSocket = NetworkUtil.serverSocket.accept();
 				ClioteSky.printSignal("Initializing connection with " + getIP(clientSocket) + ":" + clientSocket.getPort());
 				ClioteSocket newSocket = new ClioteSocket(clientSocket);
+				ClioteSky.connections.remove(newSocket);
 				ClioteSky.connections.add(newSocket);
 				newSocket.start();
 			}
 		} catch (IOException e) {
 			System.out.println("Oops! Connection exception. :/");
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	public void sendOutput(ClioteSocket cliote, String output){
