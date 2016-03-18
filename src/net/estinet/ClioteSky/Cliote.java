@@ -2,6 +2,8 @@ package net.estinet.ClioteSky;
 
 import java.io.Serializable;
 
+import net.estinet.ClioteSky.network.ClioteSocket;
+
 public class Cliote implements Serializable{
 	/**
 	 * 
@@ -14,6 +16,7 @@ public class Cliote implements Serializable{
 	private String ip = "127.0.0.1";
 	private String port = "36500";
 	private String password = "";
+	public ClioteSocket clioteSocket = null;
 	private boolean isonline = false;
 	public Cliote(String connectionname, String connectip, String conport){
 		name = connectionname;

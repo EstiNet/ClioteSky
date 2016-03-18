@@ -1,7 +1,6 @@
 package net.estinet.ClioteSky.network;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -23,38 +22,45 @@ public class ClioteSocket extends Thread{
     }
     @Override
     public void run() {
+    	int close = 0;
     	BufferedReader in;
-		try {
+		while(true){
+		try{
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			while(in.readLine() != null){
-			try{
-
-				Decosion de = new Decosion();
-				String inputLine = in.readLine();
-				ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
-				boolean done = false;
-				String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
-				for(Category category : ClioteSky.categories){
-					for(Cliote cliote : category.getCliotes()){
-						if(cliote.getIsOnline()){
-							if(cliote.getIP().equals(NetworkUtil.getIP(socket)) && cliote.getPort().equals(Integer.toString(socket.getPort()))){
-								de.decode(actual, cliote);
-								done = true;
-							}
+			if(in.readLine() == null){
+				close++;
+			}
+			if(close > 3){
+				for(int i = 0; i < ClioteSky.categories.size(); i++){
+					for(int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++){
+						if(ClioteSky.categories.get(i).getCliotes().get(i).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(i).getPort().equals(socket.getPort())){
+							
 						}
 					}
 				}
-				if(!done){
-					de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
+				break;
+			}
+			Decosion de = new Decosion();
+			String inputLine = in.readLine();
+			ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
+			boolean done = false;
+			String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
+			for(Category category : ClioteSky.categories){
+				for(Cliote cliote : category.getCliotes()){
+						if(cliote.getIP().equals(NetworkUtil.getIP(socket)) && cliote.getPort().equals(Integer.toString(socket.getPort()))){
+							de.decode(actual, cliote);
+							done = true;
+						}
 				}
 			}
-			catch(Exception e){
-				System.out.println("Oops! Connection exception. :/");
-				System.out.println(e.getMessage());
+			if(!done){
+				de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
 			}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		}
+		catch(Exception e){
+			System.out.println("Oops! Connection exception. :/");
+			System.out.println(e.getMessage());
+		}
 		}
     }
 }

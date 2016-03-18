@@ -9,6 +9,7 @@ import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
 import net.estinet.ClioteSky.exceptions.NameNotKnownException201;
 import net.estinet.ClioteSky.exceptions.PasswordIncorrectException900;
 import net.estinet.ClioteSky.exceptions.RegisterFirstException901;
+import net.estinet.ClioteSky.network.NetworkUtil;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
 import net.estinet.ClioteSky.network.protocol.output.OutputError;
@@ -67,6 +68,9 @@ public class InputHello extends InputPacket implements Packet {
 						}
 					}
 					else{
+						ClioteSky.getCliote(sender.getName()).setIsOnline(true);
+						ClioteSky.getCliote(sender.getName()).setIP(NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()));
+						ClioteSky.getCliote(sender.getName()).setPort(Integer.toString(ClioteSky.getClioteSocket(sender).getSocket().getPort()));
 						ClioteSky.println("Cliote " + sender.getName() + " has logged into ClioteSky.");
 					}
 				}
