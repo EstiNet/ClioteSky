@@ -90,7 +90,7 @@ public class InputChange extends InputPacket implements Packet {
 										for(int iterator = 0; iterator < ClioteSky.categories.size(); iterator++){
 											if(ClioteSky.categories.get(iterator).getName().equals(category)){
 												ClioteSky.categories.get(iterator).addCliote(cliote);
-												ClioteSky.println("Sucessfully changed categories for Cliote " + cliote.getName());
+												ClioteSky.println("Successfully changed categories for Cliote " + cliote.getName());
 											}
 										}
 										break;
