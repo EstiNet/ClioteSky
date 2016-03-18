@@ -34,7 +34,7 @@ public class ClioteSocket extends Thread{
 				for(int i = 0; i < ClioteSky.categories.size(); i++){
 					for(int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++){
 						if(ClioteSky.categories.get(i).getCliotes().get(i).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(i).getPort().equals(socket.getPort())){
-							
+							ClioteSky.categories.get(i).getCliotes().get(i).setIsOnline(false);
 						}
 					}
 				}
