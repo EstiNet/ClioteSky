@@ -27,13 +27,13 @@ public class ClioteSocket extends Thread{
 			
 			Decosion de = new Decosion();
 			String inputLine = in.readLine();
-			ClioteSky.printSignal("Signal recieved from " + socket.getRemoteSocketAddress().toString() + " with query " + inputLine);
+			ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
 			boolean done = false;
 			String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
 			for(Category category : ClioteSky.categories){
 				for(Cliote cliote : category.getCliotes()){
 					if(cliote.getIsOnline()){
-						if(cliote.getIP().equals(socket.getRemoteSocketAddress().toString()) && cliote.getPort().equals(Integer.toString(socket.getPort()))){
+						if(cliote.getIP().equals(NetworkUtil.getIP(socket)) && cliote.getPort().equals(Integer.toString(socket.getPort()))){
 							de.decode(actual, cliote);
 							done = true;
 						}
@@ -41,7 +41,7 @@ public class ClioteSocket extends Thread{
 				}
 			}
 			if(!done){
-				de.decode(actual, new Cliote("unknown", socket.getLocalAddress().getHostAddress(), Integer.toString(socket.getPort())));
+				de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
 			}
 		}
 		catch(Exception e){
