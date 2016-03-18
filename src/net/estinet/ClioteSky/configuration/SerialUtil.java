@@ -29,7 +29,7 @@ public class SerialUtil {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			ClioteSky.println("Creating Cliote " + cliote.getName());
+			ClioteSky.println("Created Cliote " + cliote.getName() + ".");
 			Properties prop = new Properties();
 			OutputStream output = null;
 			InputStream input = null;

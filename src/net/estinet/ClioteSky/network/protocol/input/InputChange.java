@@ -42,7 +42,7 @@ public class InputChange extends InputPacket implements Packet {
 				}
 			}
 			else{
-
+				
 			}
 		}
 	}
