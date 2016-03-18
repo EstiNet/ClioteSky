@@ -58,10 +58,6 @@ final class Enable {
 		}
 	    try {
 			inputStream = new ObjectInputStream(new FileInputStream(EncryptionUtil.PRIVATE_KEY_FILE));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    try {
 			final PrivateKey privateKey = (PrivateKey) inputStream.readObject();
 			ClioteSky.privatekey = privateKey;
 		} catch (ClassNotFoundException | IOException e) {

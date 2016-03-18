@@ -30,6 +30,7 @@ public class NetworkUtil {
 	            		ClioteSky.printSignal("Signal recieved from " + clientSocket.getLocalAddress() + ":" + Integer.toString(clientSocket.getPort()));
 	            		boolean done = false;
 		                String actual = EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
+		                System.out.println(new String(inputLine.getBytes()));
 		                for(Category category : ClioteSky.categories){
 		                	for(Cliote cliote : category.getCliotes()){
 		                		if(cliote.getIsOnline()){
