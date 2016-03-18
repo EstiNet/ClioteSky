@@ -27,7 +27,8 @@ public class ClioteSocket extends Thread{
 		while(true){
 		try{
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			if(in.readLine() == null){
+			String inputLine = in.readLine();
+			if(inputLine == null){
 				close++;
 			}
 			if(close > 3){
@@ -41,7 +42,6 @@ public class ClioteSocket extends Thread{
 				break;
 			}
 			Decosion de = new Decosion();
-			String inputLine = in.readLine();
 			ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
 			boolean done = false;
 			String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);

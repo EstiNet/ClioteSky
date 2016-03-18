@@ -19,7 +19,7 @@ public class NetworkUtil {
 			serverSocket = new ServerSocket(ClioteSky.port);
 
 			while (true) {
-				clientSocket = serverSocket.accept();
+				clientSocket = NetworkUtil.serverSocket.accept();
 				ClioteSky.printSignal("Initializing connection with " + getIP(clientSocket) + ":" + clientSocket.getPort());
 				ClioteSocket newSocket = new ClioteSocket(clientSocket);
 				ClioteSky.connections.add(newSocket);
