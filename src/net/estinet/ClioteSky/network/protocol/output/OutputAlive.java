@@ -2,7 +2,6 @@ package net.estinet.ClioteSky.network.protocol.output;
 
 import java.util.List;
 
-import net.estinet.ClioteSky.Category;
 import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
 import net.estinet.ClioteSky.network.NetworkUtil;
@@ -32,13 +31,9 @@ public class OutputAlive extends OutputPacket implements Packet{
 					ClioteSky.aliveCache.remove(sender);
 				}
 				else{
-					for(Category category : ClioteSky.categories){
-						for(Cliote cliote : category.getCliotes()){
-							if(cliote.getName().equals(sender.getName())){
-								
-							}
-						}
-					}
+					Cliote cliote = ClioteSky.getCliote(sender.getName());
+					cliote.setIsOnline(false);
+					ClioteSky.setCliote(cliote);
 				}
 			}
 		});

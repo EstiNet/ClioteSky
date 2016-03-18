@@ -16,7 +16,15 @@ public class OutputError extends OutputPacket implements Packet {
 	
 	@Override
 	public void run(List<String> args, Cliote sender) {
-		
+		try{
+		switch(Integer.parseInt(args.get(0))){
+		case 100:
+			break;
+		}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }
