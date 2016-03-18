@@ -27,13 +27,22 @@ public class NetworkUtil {
 	            
 	            while ((inputLine = in.readLine()) != null) {
 	            	try{
+	            		ClioteSky.printSignal("Signal recieved from " + clientSocket.getLocalAddress() + ":" + Integer.toString(clientSocket.getPort()));
+	            		boolean done = false;
 		                String actual = EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
 		                for(Category category : ClioteSky.categories){
 		                	for(Cliote cliote : category.getCliotes()){
-		                		
+		                		if(cliote.getIsOnline()){
+		                			if(cliote.getIP().equals(clientSocket.getLocalAddress().getHostAddress()) && cliote.getPort().equals(Integer.toString(clientSocket.getPort()))){
+		                				de.decode(actual, cliote);
+		                				done = true;
+		                			}
+		                		}
 		                	}
 		                }
-	            		de.decode(actual, new Cliote("unknown", clientSocket.getLocalAddress().getHostAddress(), Integer.toString(clientSocket.getPort())));
+		                if(!done){
+		                	de.decode(actual, new Cliote("unknown", clientSocket.getLocalAddress().getHostAddress(), Integer.toString(clientSocket.getPort())));
+		                }
 	            	}
 	            	catch(Exception e){
 	            		System.out.println("Oops! Connection exception. :/");

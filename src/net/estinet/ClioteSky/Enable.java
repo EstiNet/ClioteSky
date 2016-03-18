@@ -8,6 +8,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 import net.estinet.ClioteSky.audio.MakeSound;
+import net.estinet.ClioteSky.commands.Encrypt;
 import net.estinet.ClioteSky.commands.Help;
 import net.estinet.ClioteSky.commands.Key;
 import net.estinet.ClioteSky.commands.Stop;
@@ -48,12 +49,6 @@ final class Enable {
 		ObjectInputStream inputStream = null;
 	    try {
 			inputStream = new ObjectInputStream(new FileInputStream(EncryptionUtil.PUBLIC_KEY_FILE));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    try {
 			final PublicKey publicKey = (PublicKey) inputStream.readObject();
 			ClioteSky.publickey = publicKey;
 		} catch (ClassNotFoundException e) {
@@ -92,6 +87,7 @@ final class Enable {
 		ClioteSky.commands.add(new Help());
 		ClioteSky.commands.add(new Stop());
 		ClioteSky.commands.add(new Key());
+		ClioteSky.commands.add(new Encrypt());
 		
 		/*
 		 * Start CommandSystem
