@@ -5,6 +5,7 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.estinet.ClioteSky.network.ClioteSocket;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
 
@@ -18,6 +19,8 @@ public class ClioteSky {
 	public static PrivateKey privatekey = null;
 	
 	public static List<Cliote> aliveCache = new ArrayList<>();
+	
+	public static List<ClioteSocket> connections = new ArrayList<>();
 	
 	public static List<Command> commands = new ArrayList<>();
 	public static List<Category> categories = new ArrayList<>();
