@@ -20,7 +20,7 @@ public class InputAlive extends InputPacket implements Packet {
 
 	@Override
 	public void run(List<String> args, Cliote sender) {
-		if(sender.getName().equals("unknown")){
+		if(sender.getName().equals("unknown") || !sender.getIsOnline()){
 			try{
 				throw new RegisterFirstException901();
 			}

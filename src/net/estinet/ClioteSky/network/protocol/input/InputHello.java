@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.estinet.ClioteSky.Cliote;
+import net.estinet.ClioteSky.ClioteSky;
 import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
+import net.estinet.ClioteSky.exceptions.NameNotKnownException201;
+import net.estinet.ClioteSky.exceptions.PasswordIncorrectException900;
 import net.estinet.ClioteSky.exceptions.RegisterFirstException901;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
@@ -42,7 +45,28 @@ public class InputHello extends InputPacket implements Packet {
 				}
 			}
 			else{
-
+				if(ClioteSky.getCliote(sender.getName()) == null){
+					try{
+						throw new NameNotKnownException201();
+					}
+					catch(NameNotKnownException201 e){
+						e.printStackTrace();
+						OutputError oe = new OutputError();
+						oe.run(Arrays.asList("201"), sender);
+					}
+				}
+				else{
+					if(!ClioteSky.getCliote(sender.getName()).getPassword().equals(sender.getPassword())){
+						try{
+							throw new PasswordIncorrectException900();
+						}
+						catch(PasswordIncorrectException900 e){
+							e.printStackTrace();
+							OutputError oe = new OutputError();
+							oe.run(Arrays.asList("900"), sender);
+						}
+					}
+				}
 			}
 		}
 	}
