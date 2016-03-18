@@ -13,19 +13,21 @@ import net.estinet.ClioteSky.ClioteSky;
 import net.estinet.ClioteSky.network.protocol.Decosion;
 
 public class NetworkUtil {
+	public static ServerSocket serverSocket = null;
+	public static Socket clientSocket = null;
 	public void openTCP(){
-		try ( 
-				ServerSocket serverSocket = new ServerSocket(ClioteSky.port);
-				Socket clientSocket = serverSocket.accept();
-				PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) 
-		{	         
-			String inputLine, outputLine;
-
+		try {	         
+			
+			serverSocket = new ServerSocket(ClioteSky.port);
+			serverSocket.accept();
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			
 			Decosion de = new Decosion();
 
-			while ((inputLine = in.readLine()) != null) {
+			while (true) {
 				try{
+					String inputLine = in.readLine();
 					ClioteSky.printSignal("Signal recieved from " + clientSocket.getRemoteSocketAddress().toString() + ":" + Integer.toString(clientSocket.getPort()) + " with query " + inputLine);
 					boolean done = false;
 					String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
@@ -58,12 +60,9 @@ public class NetworkUtil {
 	}
 	public void sendOutput(Cliote cliote, String output){
 		try{
-			ServerSocket serverSocket = new ServerSocket(0);
-			Socket clientSocket = serverSocket.accept();
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 			//ADD ENCRYPTION HERE WHEN READY :D
 			out.write(output);
-			serverSocket.close();
 		}
 		catch(Exception e){
 			e.printStackTrace();
