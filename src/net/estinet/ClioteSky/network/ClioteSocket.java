@@ -28,6 +28,10 @@ public class ClioteSocket extends Thread{
 		try{
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String inputLine = in.readLine();
+			ClioteSky.connections.remove(this);
+			ClioteSky.connections.remove(this);
+			ClioteSky.connections.remove(this);
+			ClioteSky.connections.add(this);
 			if(inputLine == null){
 				close++;
 			}
@@ -39,6 +43,7 @@ public class ClioteSocket extends Thread{
 						}
 					}
 				}
+				ClioteSky.connections.remove(this);
 				break;
 			}
 			Decosion de = new Decosion();
@@ -57,8 +62,6 @@ public class ClioteSocket extends Thread{
 			if(!done){
 				de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
 			}
-			ClioteSky.connections.remove(this);
-			ClioteSky.connections.add(this);
 		}
 		catch(Exception e){
 			System.out.println("Oops! Connection exception. :/");

@@ -48,7 +48,7 @@ public class InputSend extends InputPacket implements Packet {
 			else{
 				String query = "", sentTo = args.get(0);
 				for(int i = 1; i < args.size(); i++){
-					query += args.get(i);
+					query += " " + args.get(i);
 				}
 				if(sentTo.equalsIgnoreCase("all")){
 					for(Category category : ClioteSky.categories){
