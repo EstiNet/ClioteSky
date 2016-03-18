@@ -10,7 +10,6 @@ import java.net.Socket;
 import net.estinet.ClioteSky.Category;
 import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
-import net.estinet.ClioteSky.EncryptionUtil;
 import net.estinet.ClioteSky.network.protocol.Decosion;
 
 public class NetworkUtil {
@@ -27,13 +26,13 @@ public class NetworkUtil {
 
 			while ((inputLine = in.readLine()) != null) {
 				try{
-					ClioteSky.printSignal("Signal recieved from " + clientSocket.getLocalAddress() + ":" + Integer.toString(clientSocket.getPort()) + " with query " + inputLine);
+					ClioteSky.printSignal("Signal recieved from " + clientSocket.getRemoteSocketAddress().toString() + ":" + Integer.toString(clientSocket.getPort()) + " with query " + inputLine);
 					boolean done = false;
 					String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
 					for(Category category : ClioteSky.categories){
 						for(Cliote cliote : category.getCliotes()){
 							if(cliote.getIsOnline()){
-								if(cliote.getIP().equals(clientSocket.getLocalAddress().getHostAddress()) && cliote.getPort().equals(Integer.toString(clientSocket.getPort()))){
+								if(cliote.getIP().equals(clientSocket.getRemoteSocketAddress().toString()) && cliote.getPort().equals(Integer.toString(clientSocket.getPort()))){
 									de.decode(actual, cliote);
 									done = true;
 								}
@@ -41,7 +40,6 @@ public class NetworkUtil {
 						}
 					}
 					if(!done){
-						System.out.println("Decode");
 						de.decode(actual, new Cliote("unknown", clientSocket.getLocalAddress().getHostAddress(), Integer.toString(clientSocket.getPort())));
 					}
 				}
