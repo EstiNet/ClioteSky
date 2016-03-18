@@ -42,7 +42,8 @@ public class InputSend extends InputPacket implements Packet {
 				}
 			}
 			else{
-
+				String query = args.get(1), sentTo = args.get(0);
+				//Make sure you check for all variable devin
 			}
 		}
 	}

@@ -25,7 +25,7 @@ Usage:
 send [Cliote Name or Category to be sent to] [String]
 
 ### alive
-Common "keep-alive" signals sent to the client must be responded with an "alive" function. If the message is not responded within 5 seconds, the Cliote will be marked as offline.
+Common "keep-alive" signals sent to the server must be responded with an "alive" function. If the message is not responded within 5 seconds, the server will be marked offline.
 Usage:
 alive
 
@@ -36,7 +36,7 @@ hello [Cliote Name] [Password]
 
 ## Server -> Client
 ### alive
-This function is sent to the client every 10 seconds to ensure that the client is "online". The client must respond back with an "alive" function within 5 seconds, or the Cliote will be marked as offline.
+This function is sent to the client after the client sends an alive packet to ensure that the server is marked online.
 
 ### message
 This function is sent to a client or a group of clients after a client sends a signal to the Category or specific Cliote.

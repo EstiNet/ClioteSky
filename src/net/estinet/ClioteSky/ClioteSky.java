@@ -11,15 +11,13 @@ import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
 
 public class ClioteSky {
-	public static String version = "0.0.8-BETA";
+	public static String version = "0.0.9-BETA";
 	public static State state = State.ENABLING;
 	public static boolean exit = true;
 	public static long commandid = 0;
 	public static int port = 36000;
 	public static PublicKey publickey = null;
 	public static PrivateKey privatekey = null;
-	
-	public static List<Cliote> aliveCache = new ArrayList<>();
 	
 	public static List<ClioteSocket> connections = new ArrayList<>();
 	

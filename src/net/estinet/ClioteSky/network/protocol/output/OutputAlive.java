@@ -12,7 +12,7 @@ public class OutputAlive extends OutputPacket implements Packet{
 
 	public OutputAlive(){
 		super.setName("alive");
-		super.setDescription("This function is sent to the client every 10 seconds to ensure that the client is \"online\". The client must respond back with an \"alive\" function within 5 seconds, or the Cliote will be marked as offline.");
+		super.setDescription("This function is sent to the client after the client sends an alive packet to ensure that the server is marked online.");
 		super.setFormat("alive");
 	}
 	
@@ -20,24 +20,6 @@ public class OutputAlive extends OutputPacket implements Packet{
 	public void run(List<String> args, Cliote sender) {
 		NetworkUtil nu = new NetworkUtil();
 		nu.sendOutput(ClioteSky.getClioteSocket(sender), "alive");
-		Thread thr = new Thread(new Runnable(){
-			public void run(){
-				try {
-					Thread.sleep(10000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				if(ClioteSky.aliveCache.contains(sender)){
-					ClioteSky.aliveCache.remove(sender);
-				}
-				else{
-					Cliote cliote = ClioteSky.getCliote(sender.getName());
-					cliote.setIsOnline(false);
-					ClioteSky.setCliote(cliote);
-				}
-			}
-		});
-		thr.start();
 	}
 
 }
