@@ -56,6 +56,16 @@ public class ClioteSky {
 		}
 		return null;
 	}
+	public static Category getClioteCategory(Cliote cliote){
+		for(Category category : categories){
+			for(Cliote cliot : category.getCliotes()){
+				if(cliot.getName().equals(cliote.getName())){
+					return category;
+				}
+			}
+		}
+		return null;
+	}
 	public static void println(String output){
 		System.out.println("[System]: " + output);
 	}

@@ -6,8 +6,10 @@ import java.util.List;
 import net.estinet.ClioteSky.Category;
 import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
+import net.estinet.ClioteSky.exceptions.CategoryAndNameNotKnownException202;
 import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
 import net.estinet.ClioteSky.exceptions.RegisterFirstException901;
+import net.estinet.ClioteSky.network.NetworkUtil;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
 import net.estinet.ClioteSky.network.protocol.output.OutputError;
@@ -52,15 +54,42 @@ public class InputSend extends InputPacket implements Packet {
 					for(Category category : ClioteSky.categories){
 						for(Cliote cliote : category.getCliotes()){
 							if(cliote.getIsOnline()){
-								
+								NetworkUtil nu = new NetworkUtil();
+								nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
+								break;
 							}
 						}
 					}
 				}
 				else{
-					
+					boolean notDone = true;
+					for(Category category : ClioteSky.categories){
+						if(category.getName().equals(sentTo)){
+							for(Cliote cliote : category.getCliotes()){
+								if(cliote.getIsOnline()){
+									NetworkUtil nu = new NetworkUtil();
+									nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
+									notDone = false;
+									break;
+								}
+							}
+						}
+					}
+					if(!(ClioteSky.getCliote(sentTo) == null)){
+						NetworkUtil nu = new NetworkUtil();
+						nu.sendOutput(ClioteSky.getClioteSocket(ClioteSky.getCliote(sentTo)), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
+					}
+					if(notDone){
+						try{
+							throw new CategoryAndNameNotKnownException202();
+						}
+						catch(CategoryAndNameNotKnownException202 e){
+							e.printStackTrace();
+							OutputError oe = new OutputError();
+							oe.run(Arrays.asList("202"), sender);
+						}
+					}
 				}
-				//Make sure you check for all variable devin
 			}
 		}
 	}
