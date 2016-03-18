@@ -25,7 +25,9 @@ public class InputSend extends InputPacket implements Packet {
 				throw new RegisterFirstException901();
 			}
 			catch(RegisterFirstException901 e){
-
+				e.printStackTrace();
+				OutputError oe = new OutputError();
+				oe.run(Arrays.asList("901"), sender);
 			}
 		}
 		else{

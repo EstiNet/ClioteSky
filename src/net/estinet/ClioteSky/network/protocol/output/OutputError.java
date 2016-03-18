@@ -20,29 +20,7 @@ public class OutputError extends OutputPacket implements Packet {
 		try{
 		NetworkUtil nu = new NetworkUtil();
 		System.out.println("[Error] Error code " + args.get(0) + " being sent to " + sender.getIP());
-		switch(Integer.parseInt(args.get(0))){
-		case 100:
-			nu.sendOutput(sender, "error 100");
-			break;
-		case 101:
-			nu.sendOutput(sender, "error 101");
-			break;
-		case 200:
-			nu.sendOutput(sender, "error 200");
-			break;
-		case 201:
-			nu.sendOutput(sender, "error 201");
-			break;
-		case 202:
-			nu.sendOutput(sender, "error 202");
-			break;
-		case 900:
-			nu.sendOutput(sender, "error 900");
-			break;
-		case 901:
-			nu.sendOutput(sender, "error 901");
-			break;
-		}
+		nu.sendOutput(sender, "error " + args.get(0));
 		}
 		catch(Exception e){
 			e.printStackTrace();

@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
+import net.estinet.ClioteSky.exceptions.ClioteNameAlreadyUsedException301;
 import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.Packet;
@@ -34,7 +35,12 @@ public class InputCreate extends InputPacket implements Packet {
 			String newClioteName = args.get(0), categoryToJoin = args.get(1), password = args.get(2);
 			if(ClioteSky.getCliote(newClioteName) != null){
 				try{
-					throw new 
+					throw new ClioteNameAlreadyUsedException301();
+				}
+				catch(ClioteNameAlreadyUsedException301 e){
+					e.printStackTrace();
+					OutputError oe = new OutputError();
+					oe.run(Arrays.asList("301"), sender);
 				}
 			}
 		}
