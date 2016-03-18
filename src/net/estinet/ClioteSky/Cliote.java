@@ -13,11 +13,18 @@ public class Cliote implements Serializable{
 	private String name = "";
 	private String ip = "127.0.0.1";
 	private String port = "36500";
+	private String password = "";
 	private boolean isonline = false;
 	public Cliote(String connectionname, String connectip, String conport){
 		name = connectionname;
 		ip = connectip;
 		port = conport;
+	}
+	public Cliote(String connectionname, String connectip, String conport, String password){
+		name = connectionname;
+		ip = connectip;
+		port = conport;
+		this.password = password;
 	}
 	public String getName(){
 		return name;
@@ -27,6 +34,9 @@ public class Cliote implements Serializable{
 	}
 	public String getPort(){
 		return port;
+	}
+	public String getPassword(){
+		return password;
 	}
 	public boolean getIsOnline(){
 		return isonline;
@@ -42,5 +52,8 @@ public class Cliote implements Serializable{
 	}
 	public void setIsOnline(boolean isonstate){
 		isonline = isonstate;
+	}
+	public void setPassword(String password){
+		this.password = password;
 	}
 }

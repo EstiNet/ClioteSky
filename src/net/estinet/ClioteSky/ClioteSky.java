@@ -17,11 +17,35 @@ public class ClioteSky {
 	public static PublicKey publickey = null;
 	public static PrivateKey privatekey = null;
 	
+	public static List<Cliote> aliveCache = new ArrayList<>();
+	
 	public static List<Command> commands = new ArrayList<>();
 	public static List<Category> categories = new ArrayList<>();
 	
 	public static List<InputPacket> inputPackets = new ArrayList<>();
 	public static List<OutputPacket> outputPackets = new ArrayList<>();
+	
+	public static Cliote getCliote(String clioteName){
+		for(Category category : categories){
+			for(Cliote cliote : category.getCliotes()){
+				if(cliote.getName().equals(clioteName)){
+					return cliote;
+				}
+			}
+		}
+		return null;
+	}
+	public static void setCliote(Cliote cliote){
+		for(int it = 0; it < categories.size(); it++){
+			for(int i = 0; i < categories.get(it).getCliotes().size(); i++){
+				if(categories.get(it).getCliotes().get(i).getName().equals(cliote.getName())){
+					List<Cliote> cliotes = categories.get(it).getCliotes();
+					cliotes.set(i, cliote);
+					categories.get(it).setCliotes(cliotes);
+				}
+			}
+		}
+	}
 	
 	public static void println(String output){
 		System.out.println("[System]: " + output);
