@@ -12,7 +12,7 @@ import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
 
 public class ClioteSky {
-	public static String version = "1.0.4";
+	public static String version = "1.0.5";
 	public static State state = State.ENABLING;
 	public static boolean exit = true;
 	public static long commandid = 0;
