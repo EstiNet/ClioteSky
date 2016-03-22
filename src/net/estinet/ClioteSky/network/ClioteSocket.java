@@ -19,15 +19,24 @@ public class ClioteSocket extends Thread{
 	}
 	public ClioteSocket(Socket socket) {
         this.socket = socket;
+        System.out.println("ello");
     }
     @Override
     public void run() {
     	int close = 0;
     	BufferedReader in;
-		while(true){
+    	boolean closes = true;
+		while(closes){
 		try{
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String inputLine = in.readLine();
+			for(int i = 0; i < ClioteSky.connections.size(); i++){
+				ClioteSocket cs = ClioteSky.connections.get(i);
+				if(cs.getSocket().getPort() == this.getSocket().getPort() && NetworkUtil.getIP(cs.getSocket()).equals(NetworkUtil.getIP(socket))){
+					ClioteSky.connections.get(i).interrupt();
+					ClioteSky.connections.remove(i);
+				}
+			}
 			ClioteSky.connections.remove(this);
 			ClioteSky.connections.remove(this);
 			ClioteSky.connections.remove(this);
@@ -62,6 +71,10 @@ public class ClioteSocket extends Thread{
 			if(!done){
 				de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
 			}
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
+			closes = false;
 		}
 		catch(Exception e){
 			System.out.println("Oops! Connection exception. :/");

@@ -25,57 +25,45 @@ public class InputHello extends InputPacket implements Packet {
 
 	@Override
 	public void run(List<String> args, Cliote sender) {
-		if(sender.getName().equals("unknown")){
+		if(args.size() != 2){
 			try{
-				throw new RegisterFirstException901();
+				throw new IncorrectArgumentsException101();
 			}
-			catch(RegisterFirstException901 e){
+			catch(IncorrectArgumentsException101 e){
 				e.printStackTrace();
 				OutputError oe = new OutputError();
-				oe.run(Arrays.asList("901"), sender);
+				oe.run(Arrays.asList("101"), sender);
 			}
 		}
 		else{
-			if(args.size() != 2){
+			if(ClioteSky.getCliote(sender.getName()) == null){
 				try{
-					throw new IncorrectArgumentsException101();
+					throw new NameNotKnownException201();
 				}
-				catch(IncorrectArgumentsException101 e){
+				catch(NameNotKnownException201 e){
 					e.printStackTrace();
 					OutputError oe = new OutputError();
-					oe.run(Arrays.asList("101"), sender);
+					oe.run(Arrays.asList("201"), sender);
 				}
 			}
 			else{
-				if(ClioteSky.getCliote(sender.getName()) == null){
+				if(!ClioteSky.getCliote(sender.getName()).getPassword().equals(sender.getPassword())){
 					try{
-						throw new NameNotKnownException201();
+						throw new PasswordIncorrectException900();
 					}
-					catch(NameNotKnownException201 e){
+					catch(PasswordIncorrectException900 e){
 						e.printStackTrace();
 						OutputError oe = new OutputError();
-						oe.run(Arrays.asList("201"), sender);
+						oe.run(Arrays.asList("900"), sender);
 					}
 				}
 				else{
-					if(!ClioteSky.getCliote(sender.getName()).getPassword().equals(sender.getPassword())){
-						try{
-							throw new PasswordIncorrectException900();
-						}
-						catch(PasswordIncorrectException900 e){
-							e.printStackTrace();
-							OutputError oe = new OutputError();
-							oe.run(Arrays.asList("900"), sender);
-						}
-					}
-					else{
-						ClioteSky.getCliote(sender.getName()).setIsOnline(true);
-						ClioteSky.getCliote(sender.getName()).setIP(NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()));
-						ClioteSky.getCliote(sender.getName()).setPort(Integer.toString(ClioteSky.getClioteSocket(sender).getSocket().getPort()));
-						Categories cat = new Categories();
-						cat.flush(ClioteSky.getCliote(sender.getName()));
-						ClioteSky.println("Cliote " + sender.getName() + " has logged into ClioteSky.");
-					}
+					ClioteSky.getCliote(sender.getName()).setIsOnline(true);
+					ClioteSky.getCliote(sender.getName()).setIP(NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()));
+					ClioteSky.getCliote(sender.getName()).setPort(Integer.toString(ClioteSky.getClioteSocket(sender).getSocket().getPort()));
+					Categories cat = new Categories();
+					cat.flush(ClioteSky.getCliote(sender.getName()));
+					ClioteSky.println("Cliote " + sender.getName() + " has logged into ClioteSky.");
 				}
 			}
 		}

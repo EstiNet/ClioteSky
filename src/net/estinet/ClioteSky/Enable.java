@@ -12,6 +12,7 @@ import net.estinet.ClioteSky.commands.ClioteSockets;
 import net.estinet.ClioteSky.commands.Cliotes;
 import net.estinet.ClioteSky.commands.CreateCategory;
 import net.estinet.ClioteSky.commands.Encrypt;
+import net.estinet.ClioteSky.commands.FlushSockets;
 import net.estinet.ClioteSky.commands.Help;
 import net.estinet.ClioteSky.commands.Key;
 import net.estinet.ClioteSky.commands.Stop;
@@ -112,6 +113,7 @@ final class Enable {
 		ClioteSky.commands.add(new Cliotes());
 		ClioteSky.commands.add(new CreateCategory());
 		ClioteSky.commands.add(new ClioteSockets());
+		ClioteSky.commands.add(new FlushSockets());
 		
 		/*
 		 * Start CommandSystem
