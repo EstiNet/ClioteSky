@@ -20,7 +20,7 @@ public class OutputError extends OutputPacket implements Packet {
 	public void run(List<String> args, Cliote sender) {
 		try{
 			NetworkUtil nu = new NetworkUtil();
-			System.out.println("[Error] Error code " + args.get(0) + " being sent to " + sender.getIP());
+			System.out.println("[Error] Error code " + args.get(0) + " being sent to " + NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()) + ":" + ClioteSky.getClioteSocket(sender).getSocket().getPort());
 			nu.sendOutput(ClioteSky.getClioteSocket(sender), "error " + args.get(0));
 		}
 		catch(Exception e){

@@ -12,7 +12,7 @@ import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
 
 public class ClioteSky {
-	public static String version = "1.0.6";
+	public static String version = "1.0.7";
 	public static State state = State.ENABLING;
 	public static boolean exit = true;
 	public static long commandid = 0;
@@ -20,7 +20,7 @@ public class ClioteSky {
 	public static PublicKey publickey = null;
 	public static PrivateKey privatekey = null;
 	
-	public static List<ClioteSocket> connections = new CopyOnWriteArrayList<>();
+	private static List<ClioteSocket> connections = new CopyOnWriteArrayList<>();
 	
 	public static List<Command> commands = new ArrayList<>();
 	public static List<Category> categories = new CopyOnWriteArrayList<>();
@@ -28,6 +28,15 @@ public class ClioteSky {
 	public static List<InputPacket> inputPackets = new ArrayList<>();
 	public static List<OutputPacket> outputPackets = new ArrayList<>();
 	
+	public static List<ClioteSocket> getConnections(){
+		return connections;
+	}
+	public static void setConnections(List<ClioteSocket> sockets){
+		connections = sockets;
+	}
+	public static void addClioteSocket(ClioteSocket socket){
+		connections.add(socket);
+	}
 	public static Cliote getCliote(String clioteName){
 		for(Category category : categories){
 			for(Cliote cliote : category.getCliotes()){

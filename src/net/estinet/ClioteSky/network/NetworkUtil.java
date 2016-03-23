@@ -22,15 +22,15 @@ public class NetworkUtil {
 				clientSocket = NetworkUtil.serverSocket.accept();
 				ClioteSky.printSignal("Initializing connection with " + getIP(clientSocket) + ":" + clientSocket.getPort());
 				ClioteSocket newSocket = new ClioteSocket(clientSocket);
-				for(int i = 0; i < ClioteSky.connections.size(); i++){
+				/*for(int i = 0; i < ClioteSky.connections.size(); i++){
 					ClioteSocket cs = ClioteSky.connections.get(i);
 					if(cs.getSocket().getPort() == newSocket.getSocket().getPort() && NetworkUtil.getIP(cs.getSocket()).equals(NetworkUtil.getIP(newSocket.getSocket()))){
 						ClioteSky.connections.get(i).interrupt();
 						ClioteSky.connections.remove(i);
 					}
 				}
-				ClioteSky.connections.remove(newSocket);
-				ClioteSky.connections.add(newSocket);
+				ClioteSky.connections.remove(newSocket);*/
+				ClioteSky.addClioteSocket(newSocket);
 				newSocket.start();
 			}
 		} catch (IOException e) {

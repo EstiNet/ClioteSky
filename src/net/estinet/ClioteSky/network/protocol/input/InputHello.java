@@ -6,6 +6,7 @@ import java.util.List;
 import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
 import net.estinet.ClioteSky.configuration.Categories;
+import net.estinet.ClioteSky.exceptions.AlreadyLoggedInException400;
 import net.estinet.ClioteSky.exceptions.IncorrectArgumentsException101;
 import net.estinet.ClioteSky.exceptions.NameNotKnownException201;
 import net.estinet.ClioteSky.exceptions.PasswordIncorrectException900;
@@ -36,7 +37,7 @@ public class InputHello extends InputPacket implements Packet {
 			}
 		}
 		else{
-			if(ClioteSky.getCliote(sender.getName()) == null){
+			if(ClioteSky.getCliote(args.get(0)) == null){
 				try{
 					throw new NameNotKnownException201();
 				}
@@ -47,7 +48,7 @@ public class InputHello extends InputPacket implements Packet {
 				}
 			}
 			else{
-				if(!ClioteSky.getCliote(sender.getName()).getPassword().equals(sender.getPassword())){
+				if(!ClioteSky.getCliote(args.get(0)).getPassword().equals(args.get(1))){
 					try{
 						throw new PasswordIncorrectException900();
 					}
@@ -58,12 +59,24 @@ public class InputHello extends InputPacket implements Packet {
 					}
 				}
 				else{
-					ClioteSky.getCliote(sender.getName()).setIsOnline(true);
-					ClioteSky.getCliote(sender.getName()).setIP(NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()));
-					ClioteSky.getCliote(sender.getName()).setPort(Integer.toString(ClioteSky.getClioteSocket(sender).getSocket().getPort()));
-					Categories cat = new Categories();
-					cat.flush(ClioteSky.getCliote(sender.getName()));
-					ClioteSky.println("Cliote " + sender.getName() + " has logged into ClioteSky.");
+					if(ClioteSky.getCliote(args.get(0)).getIsOnline()){
+						try{
+							throw new AlreadyLoggedInException400();
+						}
+						catch(AlreadyLoggedInException400 e){
+							e.printStackTrace();
+							OutputError oe = new OutputError();
+							oe.run(Arrays.asList("400"), sender);
+						}
+					}
+					else{
+						ClioteSky.getCliote(args.get(0)).setIsOnline(true);
+						ClioteSky.getCliote(args.get(0)).setIP(NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()));
+						ClioteSky.getCliote(args.get(0)).setPort(Integer.toString(ClioteSky.getClioteSocket(sender).getSocket().getPort()));
+						Categories cat = new Categories();
+						cat.flush(ClioteSky.getCliote(args.get(0)));
+						ClioteSky.println("Cliote " + args.get(0) + " has logged into ClioteSky.");
+					}
 				}
 			}
 		}

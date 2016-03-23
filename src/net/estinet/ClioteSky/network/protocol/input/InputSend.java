@@ -56,7 +56,6 @@ public class InputSend extends InputPacket implements Packet {
 							if(cliote.getIsOnline()){
 								NetworkUtil nu = new NetworkUtil();
 								nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
-								break;
 							}
 						}
 					}
@@ -70,9 +69,9 @@ public class InputSend extends InputPacket implements Packet {
 									NetworkUtil nu = new NetworkUtil();
 									nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
 									notDone = false;
-									break;
 								}
 							}
+							break;
 						}
 					}
 					if(!(ClioteSky.getCliote(sentTo) == null)){

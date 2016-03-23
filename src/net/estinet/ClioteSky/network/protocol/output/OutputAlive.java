@@ -20,6 +20,7 @@ public class OutputAlive extends OutputPacket implements Packet{
 	public void run(List<String> args, Cliote sender) {
 		NetworkUtil nu = new NetworkUtil();
 		nu.sendOutput(ClioteSky.getClioteSocket(sender), "alive");
+		ClioteSky.printSignal("Responded alive with " + NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()) + ":" + ClioteSky.getClioteSocket(sender).getSocket().getPort());
 	}
 
 }

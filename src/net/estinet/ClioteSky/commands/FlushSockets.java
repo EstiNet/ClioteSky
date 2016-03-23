@@ -14,12 +14,12 @@ public class FlushSockets extends Command{
 	}
 	@Override
 	public void run(List<String> args){
-		for(ClioteSocket cliote : ClioteSky.connections){
-			for(int i = 0; i < ClioteSky.connections.size(); i++){
-				ClioteSocket cs = ClioteSky.connections.get(i);
+		for(ClioteSocket cliote : ClioteSky.getConnections()){
+			for(int i = 0; i < ClioteSky.getConnections().size(); i++){
+				ClioteSocket cs = ClioteSky.getConnections().get(i);
 				if(cs.getSocket().getPort() == cliote.getSocket().getPort() && NetworkUtil.getIP(cs.getSocket()).equals(NetworkUtil.getIP(cliote.getSocket()))){
-					ClioteSky.connections.get(i).interrupt();
-					ClioteSky.connections.remove(i);
+					ClioteSky.getConnections().get(i).interrupt();
+					ClioteSky.getConnections().remove(i);
 				}
 			}
 		}

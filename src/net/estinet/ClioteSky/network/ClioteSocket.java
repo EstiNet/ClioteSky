@@ -30,7 +30,7 @@ public class ClioteSocket extends Thread{
 		try{
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String inputLine = in.readLine();
-			for(int i = 0; i < ClioteSky.connections.size(); i++){
+			/*for(int i = 0; i < ClioteSky.connections.size(); i++){
 				ClioteSocket cs = ClioteSky.connections.get(i);
 				if(cs.getSocket().getPort() == this.getSocket().getPort() && NetworkUtil.getIP(cs.getSocket()).equals(NetworkUtil.getIP(socket))){
 					ClioteSky.connections.get(i).interrupt();
@@ -40,7 +40,7 @@ public class ClioteSocket extends Thread{
 			ClioteSky.connections.remove(this);
 			ClioteSky.connections.remove(this);
 			ClioteSky.connections.remove(this);
-			ClioteSky.connections.add(this);
+			ClioteSky.connections.add(this);*/
 			if(inputLine == null){
 				close++;
 			}
@@ -52,7 +52,8 @@ public class ClioteSocket extends Thread{
 						}
 					}
 				}
-				ClioteSky.connections.remove(this);
+				ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
+				ClioteSky.getConnections().remove(this);
 				break;
 			}
 			Decosion de = new Decosion();

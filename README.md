@@ -80,6 +80,12 @@ Sent back to client if the category is not recognized.
 ### 301
 Sent back to client if the Cliote name is already used.
 
+## 4xx
+Errors associated with the login process.
+
+### 400
+Sent back to client if the Cliote is already logged in.
+
 ## 9xx
 Other errors.
 
