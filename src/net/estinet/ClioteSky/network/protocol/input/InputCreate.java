@@ -61,7 +61,7 @@ public class InputCreate extends InputPacket implements Packet {
 							ClioteSky.categories.get(i).addCliote(cliote);
 							SerialUtil su = new SerialUtil();
 							try {
-								su.createCliote(ClioteSky.categories.get(i), cliote);
+								su.createCliote(ClioteSky.categories.get(i), cliote, true);
 							} catch (ImproperClioteException e) {
 								e.printStackTrace();
 							}

@@ -55,7 +55,7 @@ public class InputSend extends InputPacket implements Packet {
 						for(Cliote cliote : category.getCliotes()){
 							if(cliote.getIsOnline()){
 								NetworkUtil nu = new NetworkUtil();
-								nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
+								nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + query);
 							}
 						}
 					}
@@ -67,7 +67,7 @@ public class InputSend extends InputPacket implements Packet {
 							for(Cliote cliote : category.getCliotes()){
 								if(cliote.getIsOnline()){
 									NetworkUtil nu = new NetworkUtil();
-									nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
+									nu.sendOutput(ClioteSky.getClioteSocket(cliote), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + query);
 									notDone = false;
 								}
 							}
@@ -76,7 +76,7 @@ public class InputSend extends InputPacket implements Packet {
 					}
 					if(!(ClioteSky.getCliote(sentTo) == null)){
 						NetworkUtil nu = new NetworkUtil();
-						nu.sendOutput(ClioteSky.getClioteSocket(ClioteSky.getCliote(sentTo)), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + " " + query);
+						nu.sendOutput(ClioteSky.getClioteSocket(ClioteSky.getCliote(sentTo)), "message " + ClioteSky.getClioteCategory(sender).getName() + " " + sender.getName() + query);
 						notDone = false;
 					}
 					if(notDone){

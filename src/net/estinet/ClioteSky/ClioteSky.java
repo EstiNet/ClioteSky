@@ -12,7 +12,7 @@ import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
 
 public class ClioteSky {
-	public static String version = "1.0.7";
+	public static String version = "1.0.8";
 	public static State state = State.ENABLING;
 	public static boolean exit = true;
 	public static long commandid = 0;
@@ -60,7 +60,7 @@ public class ClioteSky {
 	}
 	public static ClioteSocket getClioteSocket(Cliote cliote){
 		for(ClioteSocket cs : connections){
-			if(NetworkUtil.getIP(cs.getSocket()).equals(cliote.getIP())){
+			if(NetworkUtil.getIP(cs.getSocket()).equals(cliote.getIP()) && cs.getSocket().getPort() == Integer.parseInt(cliote.getPort())){
 				return cs;
 			}
 		}

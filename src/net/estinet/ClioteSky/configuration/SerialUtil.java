@@ -13,14 +13,16 @@ import net.estinet.ClioteSky.Cliote;
 import net.estinet.ClioteSky.ClioteSky;
 
 public class SerialUtil {
-	public void createCliote(Category category, Cliote cliote) throws ImproperClioteException{
+	public void createCliote(Category category, Cliote cliote, boolean createNew) throws ImproperClioteException{
 		if(!ClioteSky.categories.contains(category)){
 			throw new ImproperClioteException();
 		}
 		else{
-			for(int i = 0; i < ClioteSky.categories.size(); i++){
-				if(ClioteSky.categories.get(i).equals(category)){
-					ClioteSky.categories.get(i).addCliote(cliote);
+			if(createNew){
+				for(int i = 0; i < ClioteSky.categories.size(); i++){
+					if(ClioteSky.categories.get(i).equals(category)){
+						ClioteSky.categories.get(i).addCliote(cliote);
+					}
 				}
 			}
 			File f = new File("./Cliotes/" + category.getName() + "/" + cliote.getName() + ".properties");

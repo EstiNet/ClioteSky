@@ -18,19 +18,18 @@ public class ClioteSocket extends Thread{
 		this.socket = socket;
 	}
 	public ClioteSocket(Socket socket) {
-        this.socket = socket;
-        System.out.println("ello");
-    }
-    @Override
-    public void run() {
-    	int close = 0;
-    	BufferedReader in;
-    	boolean closes = true;
+		this.socket = socket;
+	}
+	@Override
+	public void run() {
+		int close = 0;
+		BufferedReader in;
+		boolean closes = true;
 		while(closes){
-		try{
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String inputLine = in.readLine();
-			/*for(int i = 0; i < ClioteSky.connections.size(); i++){
+			try{
+				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				String inputLine = in.readLine();
+				/*for(int i = 0; i < ClioteSky.connections.size(); i++){
 				ClioteSocket cs = ClioteSky.connections.get(i);
 				if(cs.getSocket().getPort() == this.getSocket().getPort() && NetworkUtil.getIP(cs.getSocket()).equals(NetworkUtil.getIP(socket))){
 					ClioteSky.connections.get(i).interrupt();
@@ -41,46 +40,48 @@ public class ClioteSocket extends Thread{
 			ClioteSky.connections.remove(this);
 			ClioteSky.connections.remove(this);
 			ClioteSky.connections.add(this);*/
-			if(inputLine == null){
-				close++;
-			}
-			if(close > 1){
-				for(int i = 0; i < ClioteSky.categories.size(); i++){
-					for(int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++){
-						if(ClioteSky.categories.get(i).getCliotes().get(i).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(i).getPort().equals(socket.getPort())){
-							ClioteSky.categories.get(i).getCliotes().get(i).setIsOnline(false);
+				if(inputLine == null){
+					close++;
+				}
+				if(close > 1){
+					for(int i = 0; i < ClioteSky.categories.size(); i++){
+						for(int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++){
+							if(ClioteSky.categories.get(i).getCliotes().get(iter).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(iter).getPort().equals(Integer.toString(socket.getPort()))){
+								ClioteSky.categories.get(i).getCliotes().get(iter).setIsOnline(false);
+							}
 						}
 					}
+					ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
+					ClioteSky.getConnections().remove(this);
+					break;
 				}
-				ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
-				ClioteSky.getConnections().remove(this);
-				break;
-			}
-			Decosion de = new Decosion();
-			ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
-			boolean done = false;
-			String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
-			for(Category category : ClioteSky.categories){
-				for(Cliote cliote : category.getCliotes()){
-						if(cliote.getIP().equals(NetworkUtil.getIP(socket)) && cliote.getPort().equals(Integer.toString(socket.getPort()))){
-							de.decode(actual, cliote);
-							done = true;
-							break;
+				else{
+					Decosion de = new Decosion();
+					ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
+					boolean done = false;
+					String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
+					for(Category category : ClioteSky.categories){
+						for(Cliote cliote : category.getCliotes()){
+							if(cliote.getIP().equals(NetworkUtil.getIP(socket)) && cliote.getPort().equals(Integer.toString(socket.getPort()))){
+								de.decode(actual, cliote);
+								done = true;
+								break;
+							}
 						}
+					}
+					if(!done){
+						de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
+					}
 				}
 			}
-			if(!done){
-				de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
+			catch(ArrayIndexOutOfBoundsException e){
+				ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
+				closes = false;
+			}
+			catch(Exception e){
+				System.out.println("Oops! Connection exception. :/");
+				e.printStackTrace();
 			}
 		}
-		catch(ArrayIndexOutOfBoundsException e){
-			ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
-			closes = false;
-		}
-		catch(Exception e){
-			System.out.println("Oops! Connection exception. :/");
-			e.printStackTrace();
-		}
-		}
-    }
+	}
 }

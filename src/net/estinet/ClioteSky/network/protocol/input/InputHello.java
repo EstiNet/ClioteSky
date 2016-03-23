@@ -74,7 +74,7 @@ public class InputHello extends InputPacket implements Packet {
 						ClioteSky.getCliote(args.get(0)).setIP(NetworkUtil.getIP(ClioteSky.getClioteSocket(sender).getSocket()));
 						ClioteSky.getCliote(args.get(0)).setPort(Integer.toString(ClioteSky.getClioteSocket(sender).getSocket().getPort()));
 						Categories cat = new Categories();
-						cat.flush(ClioteSky.getCliote(args.get(0)));
+						cat.flush(ClioteSky.getCliote(args.get(0)), false);
 						ClioteSky.println("Cliote " + args.get(0) + " has logged into ClioteSky.");
 					}
 				}

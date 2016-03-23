@@ -55,7 +55,7 @@ public class Categories {
 		}
 
 	}
-	public void flush(Cliote cliote){
+	public void flush(Cliote cliote, boolean createNew){
 		Category take = null;
 		for(Category category : ClioteSky.categories){
 			for(Cliote cliotet : category.getCliotes()){
@@ -68,7 +68,7 @@ public class Categories {
 			File f = new File("./Cliotes/" + take.getName());
 			f.delete();
 			SerialUtil su = new SerialUtil();
-			su.createCliote(take, cliote);
+			su.createCliote(take, cliote, createNew);
 		}
 		catch(Exception e){
 			e.printStackTrace();
