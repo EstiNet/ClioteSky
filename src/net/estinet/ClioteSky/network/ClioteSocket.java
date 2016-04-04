@@ -3,6 +3,7 @@ package net.estinet.ClioteSky.network;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.net.SocketException;
 
 import net.estinet.ClioteSky.Category;
 import net.estinet.ClioteSky.Cliote;
@@ -62,6 +63,18 @@ public class ClioteSocket extends Thread{
 						de.decode(actual, new Cliote("unknown", NetworkUtil.getIP(socket), Integer.toString(socket.getPort())));
 					}
 				}
+			}
+			catch(SocketException e){
+				for(int i = 0; i < ClioteSky.categories.size(); i++){
+					for(int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++){
+						if(ClioteSky.categories.get(i).getCliotes().get(iter).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(iter).getPort().equals(Integer.toString(socket.getPort()))){
+							ClioteSky.categories.get(i).getCliotes().get(iter).setIsOnline(false);
+						}
+					}
+				}
+				ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
+				ClioteSky.getConnections().remove(this);
+				break;
 			}
 			catch(ArrayIndexOutOfBoundsException e){
 				ClioteSky.printSignal("Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());

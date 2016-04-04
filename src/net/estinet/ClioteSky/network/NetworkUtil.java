@@ -42,7 +42,7 @@ public class NetworkUtil {
 		try{
 			DataOutputStream outToServer = new DataOutputStream(cliote.getSocket().getOutputStream());
 			//ADD ENCRYPTION HERE WHEN READY :D
-			outToServer.writeBytes(output);
+			outToServer.writeBytes(output + "\n");
 		}
 		catch(Exception e){
 			e.printStackTrace();
