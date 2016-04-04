@@ -96,4 +96,4 @@ Sent back to client when the "password" is incorrect.
 Sent back to client when the client tries to execute a query before registering.
 
 # Variables
-all: Variable to be used as a category which includes all Cliodes, online and offline.
+all: Variable to be used as a category which includes all Cliotes, online and offline.
