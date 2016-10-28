@@ -31,6 +31,7 @@ public class ClioteSky {
 	public static String version = "1.0.10";
 	public static State state = State.ENABLING;
 	public static boolean exit = true;
+	public static boolean debug = false;
 	public static long commandid = 0;
 	public static int port = 36000;
 	public static PublicKey publickey = null;

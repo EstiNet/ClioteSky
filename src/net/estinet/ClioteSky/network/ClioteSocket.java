@@ -49,7 +49,7 @@ public class ClioteSocket extends Thread{
 				if(inputLine == null){
 					close++;
 				}
-				if(close > 1){
+				if(close > 1){ //REWRITE CLOSE PROTOCOL
 					for(int i = 0; i < ClioteSky.categories.size(); i++){
 						for(int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++){
 							if(ClioteSky.categories.get(i).getCliotes().get(iter).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(iter).getPort().equals(Integer.toString(socket.getPort()))){
