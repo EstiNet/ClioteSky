@@ -26,6 +26,7 @@ import net.estinet.ClioteSky.audio.MakeSound;
 import net.estinet.ClioteSky.commands.ClioteSockets;
 import net.estinet.ClioteSky.commands.Cliotes;
 import net.estinet.ClioteSky.commands.CreateCategory;
+import net.estinet.ClioteSky.commands.Debug;
 import net.estinet.ClioteSky.commands.Encrypt;
 import net.estinet.ClioteSky.commands.FlushSockets;
 import net.estinet.ClioteSky.commands.Help;
@@ -129,6 +130,7 @@ final class Enable {
 		ClioteSky.commands.add(new CreateCategory());
 		ClioteSky.commands.add(new ClioteSockets());
 		ClioteSky.commands.add(new FlushSockets());
+		ClioteSky.commands.add(new Debug());
 		
 		/*
 		 * Start CommandSystem

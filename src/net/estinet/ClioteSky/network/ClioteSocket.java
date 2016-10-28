@@ -63,7 +63,12 @@ public class ClioteSocket extends Thread{
 				}
 				else{
 					Decosion de = new Decosion();
-					ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
+					if(!inputLine.equalsIgnoreCase("alive")){
+						ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
+					}
+					else if(ClioteSky.debug){
+						ClioteSky.printSignal("Signal recieved from " + NetworkUtil.getIP(socket) + ":" + socket.getPort() +  " with query " + inputLine);
+					}
 					boolean done = false;
 					String actual = inputLine;//EncryptionUtil.decrypt(inputLine.getBytes(), ClioteSky.privatekey);
 					for(Category category : ClioteSky.categories){

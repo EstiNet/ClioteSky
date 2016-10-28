@@ -1,5 +1,7 @@
 package net.estinet.ClioteSky;
 
+import java.io.Console;
+
 /*
 Copyright 2016 EstiNet
 
@@ -18,13 +20,12 @@ limitations under the License.
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CommandSystem {
-	Scanner scan = new Scanner(System.in);
+	Console scan = System.console();
 	protected void start(){
 		System.out.print("\n>");
-		String input = scan.nextLine();
+		String input = scan.readLine();
 		String[] args = input.split("\\s+");
 		List<String> argss = new ArrayList<>();	
 		for(String str : args){
