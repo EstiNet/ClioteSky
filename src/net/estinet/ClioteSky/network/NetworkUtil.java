@@ -50,7 +50,7 @@ public class NetworkUtil {
 	}
 	public void sendOutput(ClioteSocket cliote, String output){
 		try{
-			DataOutputStream outToServer = new DataOutputStream(new BufferedOutputStream(cliote.getSocket().getOutputStream()));
+			DataOutputStream outToServer = new DataOutputStream(cliote.getSocket().getOutputStream());
 			//ADD ENCRYPTION HERE WHEN READY :D
 			outToServer.writeBytes(output + "\n");
 		}
