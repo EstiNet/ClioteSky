@@ -55,7 +55,6 @@ public class PropertiesUtil {
 					e.printStackTrace();
 				}
 			}
-
 		}
 	}
 	protected void loadFile(File f){
