@@ -14,6 +14,8 @@ The create function initializes a Cliote with the ClioteSky installation. This m
 Usage:
 create [Cliote Name] [Category] [Password]
 
+"Default" is the default catergory.
+
 ### change
 The change function changes a Cliote's setting. The IP of the client will be changed as well as the category. The name cannot be changed.
 Usage:
