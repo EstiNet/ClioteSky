@@ -102,7 +102,7 @@ public class ClioteSocket extends Thread{
 				closes = false;
 			}
 			catch(Exception e){
-				System.out.println("Oops! Connection exception. :/");
+				ClioteSky.fprintln("Oops! Connection exception. :/");
 				e.printStackTrace();
 			}
 		}

@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import net.estinet.ClioteSky.ClioteSky;
+
 public class IncorrectArgumentsException101 extends Exception{
 
 	/**
@@ -24,7 +26,7 @@ public class IncorrectArgumentsException101 extends Exception{
 	private static final long serialVersionUID = -3618873774557888286L;
 	
 	public void printStackTrace(){
-		System.out.println("[Exception] IncorrectArgumentsException101 thrown.");
+		ClioteSky.fprintln("[Exception] IncorrectArgumentsException101 thrown.");
 	}
 	
 }

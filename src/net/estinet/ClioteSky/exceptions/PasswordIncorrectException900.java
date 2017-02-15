@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import net.estinet.ClioteSky.ClioteSky;
+
 public class PasswordIncorrectException900 extends Exception{
 
 	/**
@@ -24,7 +26,7 @@ public class PasswordIncorrectException900 extends Exception{
 	private static final long serialVersionUID = 3103674487476242108L;
 
 	public void printStackTrace(){
-		System.out.println("[Exception] PasswordIncorrectException900 thrown.");
+		ClioteSky.fprintln("[Exception] PasswordIncorrectException900 thrown.");
 	}
 	
 }

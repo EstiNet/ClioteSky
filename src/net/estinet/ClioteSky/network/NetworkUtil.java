@@ -44,7 +44,7 @@ public class NetworkUtil {
 				newSocket.start();
 			}
 		} catch (IOException e) {
-			System.out.println("Oops! Connection exception. :/");
+			ClioteSky.fprintln("Oops! Connection exception. :/");
 			e.printStackTrace();
 		}
 	}

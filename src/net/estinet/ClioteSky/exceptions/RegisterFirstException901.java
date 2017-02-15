@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import net.estinet.ClioteSky.ClioteSky;
+
 public class RegisterFirstException901 extends Exception{
 
 	/**
@@ -24,7 +26,7 @@ public class RegisterFirstException901 extends Exception{
 	private static final long serialVersionUID = 1L;
 
 	public void printStackTrace(){
-		System.out.println("[Exception] RegisterFirstException901 thrown.");
+		ClioteSky.fprintln("[Exception] RegisterFirstException901 thrown.");
 	}
 	
 }

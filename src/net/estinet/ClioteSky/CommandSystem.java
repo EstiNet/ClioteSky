@@ -73,7 +73,7 @@ public class CommandSystem {
 			}
 		}
 		if(lel){
-			System.out.println("\n[System]: Command not recognized. :P");
+			ClioteSky.fprintln("\n[System]: Command not recognized. :P");
 			start();
 		}
 	}

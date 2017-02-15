@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import net.estinet.ClioteSky.ClioteSky;
+
 public class ClioteNameAlreadyUsedException301 extends Exception{
 
 	/**
@@ -25,7 +27,7 @@ public class ClioteNameAlreadyUsedException301 extends Exception{
 	
 	@Override
 	public void printStackTrace(){
-		System.out.println("[Exception] ClioteNameAlreadyUsedException301 thrown.");
+		ClioteSky.fprintln("[Exception] ClioteNameAlreadyUsedException301 thrown.");
 	}
 	
 }

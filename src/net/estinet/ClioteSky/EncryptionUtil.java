@@ -193,9 +193,9 @@ public static void main(String[] args) {
       final String plainText = decrypt(cipherText, privateKey);
 
       // Printing the Original, Encrypted and Decrypted Text
-      System.out.println("Original: " + originalText);
-      System.out.println("Encrypted: " +cipherText.toString());
-      System.out.println("Decrypted: " + plainText);
+      ClioteSky.fprintln("Original: " + originalText);
+      ClioteSky.fprintln("Encrypted: " +cipherText.toString());
+      ClioteSky.fprintln("Decrypted: " + plainText);
       inputStream.close();
     } catch (Exception e) {
       e.printStackTrace();

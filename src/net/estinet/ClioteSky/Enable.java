@@ -49,7 +49,7 @@ final class Enable {
 		/*
 		 * ClioteSky Startup Process.
 		 */
-		System.out.println("Starting ClioteSky version " + ClioteSky.version + "...");
+		ClioteSky.fprintln("Starting ClioteSky version " + ClioteSky.version + "...");
 		
 		MakeSound ms = new MakeSound();
 		ms.play();
@@ -149,6 +149,6 @@ final class Enable {
 		});
 		thr.start();
 		ClioteSky.commandid = thr.getId();
-		System.out.println("Welcome to ClioteSky.");
+		ClioteSky.fprintln("Welcome to ClioteSky.");
 	}
 }

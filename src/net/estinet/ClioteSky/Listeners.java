@@ -23,7 +23,7 @@ public class Listeners {
 	 */
 	
 	public static void main(String[] args) {
-		System.out.println("ClioteSky.");
+		ClioteSky.fprintln("ClioteSky.");
 		Enable enable = new Enable();
 		enable.enable();
 	}

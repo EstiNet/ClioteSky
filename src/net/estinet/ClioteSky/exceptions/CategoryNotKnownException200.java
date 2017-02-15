@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import net.estinet.ClioteSky.ClioteSky;
+
 public class CategoryNotKnownException200 extends Exception{
 
 	/**
@@ -24,7 +26,7 @@ public class CategoryNotKnownException200 extends Exception{
 	private static final long serialVersionUID = 740220886824080104L;
 
 	public void printStackTrace(){
-		System.out.println("[Exception] CategoryNotKnownException200 thrown.");
+		ClioteSky.fprintln("[Exception] CategoryNotKnownException200 thrown.");
 	}
 	
 }
