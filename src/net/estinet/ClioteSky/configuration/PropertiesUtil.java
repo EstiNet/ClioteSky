@@ -75,7 +75,7 @@ public class PropertiesUtil {
 				ClioteSky.println("Loaded setting \"port\" with value " + prop.getProperty("port"));
 			}
 			catch(Exception e){
-				System.out.println("Something wrong with the port input. Check it? :P");
+				ClioteSky.fprintln("Something wrong with the port input. Check it? :P");
 				e.printStackTrace();
 			}
 		} catch (IOException ex) {

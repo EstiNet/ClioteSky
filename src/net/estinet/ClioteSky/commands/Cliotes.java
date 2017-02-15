@@ -31,11 +31,11 @@ public class Cliotes extends Command{
 	@Override
 	public void run(List<String> args){
 		for(Category category : ClioteSky.categories){
-			System.out.println("Cliotes under category " + category.getName() + ":");
+			ClioteSky.fprintln("Cliotes under category " + category.getName() + ":");
 			for(Cliote cliote : category.getCliotes()){
-				System.out.println("Cliote " + cliote.getName() + ":");
-				System.out.println("IP: " + cliote.getIP() + ":" + cliote.getPort());
-				System.out.println("IsOnline: " + Boolean.toString(cliote.getIsOnline()));
+				ClioteSky.fprintln("Cliote " + cliote.getName() + ":");
+				ClioteSky.fprintln("IP: " + cliote.getIP() + ":" + cliote.getPort());
+				ClioteSky.fprintln("IsOnline: " + Boolean.toString(cliote.getIsOnline()));
 			}
 		}
 	}

@@ -140,9 +140,10 @@ final class Enable {
 		
 		ClioteSky.state = State.COMMAND;
 		
-		CommandSystem cs = new CommandSystem();
+		final CommandSystem cs = new CommandSystem();
 		Thread thr = new Thread(new Runnable(){
 			public void run(){
+				ClioteSky.console.setPrompt(">");
 				cs.start();
 			}
 		});

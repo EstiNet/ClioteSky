@@ -25,7 +25,7 @@ public class MakeSound {
 	    AudioInputStream stream;
 	    AudioFormat format;
 	    DataLine.Info info;
-	    Clip clip;
+	    final Clip clip;
 	    //ClassLoader CLDR = this.getClass().getClassLoader();
 	    File file = new File("./startup.wav"/*CLDR.getResource("./startup.wav").getFile()*/);
 	    stream = AudioSystem.getAudioInputStream(file);

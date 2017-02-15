@@ -37,7 +37,7 @@ public class CreateCategory extends Command{
 		ClioteSky.println("Created category " + args.get(1));
 		}
 		catch(Exception e){
-			System.out.println("Something is wrong with your input! Try again. :P");
+			ClioteSky.fprintln("Something is wrong with your input! Try again. :P");
 			e.printStackTrace();
 		}
 	}

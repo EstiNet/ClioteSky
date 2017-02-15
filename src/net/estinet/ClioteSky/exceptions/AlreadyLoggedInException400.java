@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import net.estinet.ClioteSky.ClioteSky;
+
 public class AlreadyLoggedInException400 extends Exception{
 
 	/**
@@ -24,6 +26,6 @@ public class AlreadyLoggedInException400 extends Exception{
 	private static final long serialVersionUID = 5856380442760319065L;
 	
 	public void printStackTrace(){
-		System.out.println("[Exception] AlreadyLoggedInException400 thrown.");
+		ClioteSky.fprintln("[Exception] AlreadyLoggedInException400 thrown.");
 	}
 }

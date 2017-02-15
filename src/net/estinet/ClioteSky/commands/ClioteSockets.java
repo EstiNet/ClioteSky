@@ -31,7 +31,7 @@ public class ClioteSockets extends Command{
 	@Override
 	public void run(List<String> args){
 		for(ClioteSocket cs : ClioteSky.getConnections()){
-			System.out.println("ClioteSocket IP: " + NetworkUtil.getIP(cs.getSocket()) + ":" + cs.getSocket().getPort());
+			ClioteSky.fprintln("ClioteSocket IP: " + NetworkUtil.getIP(cs.getSocket()) + ":" + cs.getSocket().getPort());
 		}
 	}
 }

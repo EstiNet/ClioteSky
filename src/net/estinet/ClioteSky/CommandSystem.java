@@ -18,24 +18,29 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandSystem {
-	Console scan = System.console();
 	protected void start(){
-		System.out.print("\n>");
-		String input = scan.readLine();
+		String input = null;
+		try {
+			input = ClioteSky.console.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
 		String[] args = input.split("\\s+");
-		List<String> argss = new ArrayList<>();	
+		final List<String> argss = new ArrayList<>();
 		for(String str : args){
 			argss.add(str);
 		}
 		boolean lel = true;
-		for(Command command : ClioteSky.commands){
+		for(final Command command : ClioteSky.commands){
 			if(command.getName().equalsIgnoreCase(args[0])){
 				lel = false;
-				Thread thr = new Thread(new Runnable(){
+				final Thread thr = new Thread(new Runnable(){
 					public void run(){
 						command.run(argss);
 					}

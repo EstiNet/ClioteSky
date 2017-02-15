@@ -63,7 +63,7 @@ public class Categories {
 					}
 				}
 				catch(Exception e){
-					System.out.println("Error loading Cliote " + cliotes.getName());
+					ClioteSky.fprintln("Error loading Cliote " + cliotes.getName());
 					e.printStackTrace();
 				}
 			}
