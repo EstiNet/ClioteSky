@@ -2,6 +2,7 @@
 EstiNet's TCP communication server in the cloud! Java API functions to relay signals on send.
 ## Terms
 Cliote: Connection
+<br>
 ClioteSky: Server
 
 
@@ -11,29 +12,39 @@ The ClioteSky protocol consists of 5 functions. These are commands that are sent
 ## Client -> Server
 ### create
 The create function initializes a Cliote with the ClioteSky installation. This must be sent before any other functions.
+<br>
 Usage:
+<br>
 create [Cliote Name] [Category] [Password]
-
-"Default" is the default catergory.
+<br>
+"Default" is the default category.
 
 ### change
 The change function changes a Cliote's setting. The IP of the client will be changed as well as the category. The name cannot be changed.
+<br>
 Usage:
+<br>
 change [Cliote Name] [Category] [Password]
 
 ### send
 The send function sends a string to a category of Cliotes or a single Cliote.
+<br>
 Usage:
+<br>
 send [Cliote Name or Category to be sent to] [String]
 
 ### alive
-Common "keep-alive" signals sent to the server must be responded with an "alive" function. If the message is not responded within 5 seconds, the server will be marked offline.
+Common "keep-alive" signals sent to the server must be responded with an "alive" function. If the message is not responded within 30 seconds, the server will be marked offline, with the socket being closed.
+<br>
 Usage:
+<br>
 alive
 
 ### hello
 When a client initialized with the server and is online, this function must be sent before anything else to mark the Cliote as "online".
+<br>
 Usage:
+<br>
 hello [Cliote Name] [Password]
 
 ## Server -> Client
@@ -42,12 +53,16 @@ This function is sent to the client after the client sends an alive packet to en
 
 ### message
 This function is sent to a client or a group of clients after a client sends a signal to the Category or specific Cliote.
+<br>
 Format:
+<br>
 message [Category Recieved From] [Cliote Name Recieved From] [String]
 
 ### error
 This function is sent to a client if there is an error with a function sent to the ClioteSky installation. See error codes at the bottom.
+<br>
 Format:
+<br>
 error [Code]
 
 # Error Codes
