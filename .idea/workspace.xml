@@ -5,7 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2be21f49-ae77-44fd-984c-ae6e0b0bb731" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Category.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Cliote.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/ClioteSky.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Command.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/CommandSystem$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/CommandSystem$2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/CommandSystem.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Disable.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Enable$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Enable$2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Enable.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/EncryptionUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/GUI/MainGUI.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/Listeners.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/State.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/audio/MakeSound$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/audio/MakeSound.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/ClioteSockets.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/Cliotes.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/CreateCategory.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/Debug.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/Encrypt.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/FlushSockets.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/Help.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/Key.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/commands/Stop.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/configuration/Categories.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/configuration/Config.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/configuration/ImproperClioteException.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/configuration/PropertiesUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/configuration/SerialUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/AlreadyLoggedInException400.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/CategoryAndNameNotKnownException202.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/CategoryNotKnownException200.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/ClioteNameAlreadyUsedException301.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/CreationCategoryNotKnownException300.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/FunctionNotKnownException100.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/IncorrectArgumentsException101.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/NameNotKnownException201.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/PasswordIncorrectException900.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/exceptions/RegisterFirstException901.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/ClioteSocket$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/ClioteSocket.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/NetworkUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/Pinger.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/Decosion.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/InputPacket.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/OutputPacket.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/Packet.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/input/InputAlive.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/input/InputChange.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/input/InputCreate.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/input/InputHello.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/input/InputSend.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/output/OutputAlive.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/output/OutputError.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/net/estinet/ClioteSky/network/protocol/output/OutputMessage.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/Version.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/estinet/ClioteSky/Enable.java" afterPath="$PROJECT_DIR$/src/net/estinet/ClioteSky/Enable.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/estinet/ClioteSky/network/ClioteSocket.java" afterPath="$PROJECT_DIR$/src/net/estinet/ClioteSky/network/ClioteSocket.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,45 +82,72 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="CommandSystem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/CommandSystem.java">
+      <file leaf-file-name="ClioteSky.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/ClioteSky.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="75" column="30" lean-forward="false" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
+            <state relative-caret-position="539">
+              <caret line="43" column="8" lean-forward="true" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Listeners.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/Listeners.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OutputPacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/protocol/OutputPacket.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClioteSocket.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClioteSocket.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/ClioteSocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="61" column="51" lean-forward="false" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
+            <state relative-caret-position="753">
+              <caret line="93" column="36" lean-forward="true" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
               <folding>
-                <element signature="e#1364#3124#0" expanded="true" />
-                <element signature="e#3123#3124#0" expanded="true" />
+                <element signature="e#1351#3005#0" expanded="true" />
+                <element signature="e#3004#3005#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Throwable.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/Throwable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="632" column="16" lean-forward="false" selection-start-line="632" selection-start-column="16" selection-end-line="632" selection-end-column="16" />
+              <folding>
+                <element signature="e#26222#26223#0" expanded="true" />
+                <element signature="e#26265#26266#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OutputAlive.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/protocol/output/OutputAlive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Version.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/Version.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="54" lean-forward="false" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#359#360#0" expanded="true" />
+                <element signature="e#435#436#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FlushSockets.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/FlushSockets.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="25" column="26" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="42" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,31 +172,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InputPacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/protocol/InputPacket.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Decosion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/protocol/Decosion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/Command.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="440">
               <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Enable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/Enable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="122" column="38" lean-forward="true" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -161,10 +237,11 @@
         <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/network/NetworkUtil.java" />
         <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/ClioteSky.java" />
         <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/CommandSystem.java" />
-        <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/Enable.java" />
         <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/EncryptionUtil.java" />
         <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/Listeners.java" />
         <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/network/OnlineCheck.java" />
+        <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/Version.java" />
+        <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/Enable.java" />
         <option value="$PROJECT_DIR$/src/net/estinet/ClioteSky/network/ClioteSocket.java" />
       </list>
     </option>
@@ -253,62 +330,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClioteSky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClioteSky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClioteSky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClioteSky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClioteSky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClioteSky" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="output" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -570,7 +591,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -579,8 +600,8 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -613,22 +634,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/ClioteSockets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="33" column="30" lean-forward="false" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/CreateCategory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="40" column="32" lean-forward="true" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/Debug.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -641,14 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="661">
           <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/FlushSockets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -856,14 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/protocol/output/OutputAlive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/protocol/output/OutputError.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -904,40 +893,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/ClioteSky.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="159" column="21" lean-forward="true" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/CommandSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="75" column="30" lean-forward="false" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/Enable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1430">
-          <caret line="51" column="26" lean-forward="false" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-          <folding>
-            <element signature="e#4431#4531#0" expanded="true" />
-            <element signature="e#4530#4531#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1005,14 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/NetworkUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="46" column="30" lean-forward="false" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/OnlineCheck.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -1021,14 +973,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/ClioteSocket.java">
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/protocol/output/OutputAlive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/FlushSockets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="25" column="26" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/commands/Version.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="54" lean-forward="false" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#435#436#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/NetworkUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="61" column="51" lean-forward="false" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
+          <caret line="46" column="30" lean-forward="false" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/Throwable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="632" column="16" lean-forward="false" selection-start-line="632" selection-start-column="16" selection-end-line="632" selection-end-column="16" />
           <folding>
-            <element signature="e#1364#3124#0" expanded="true" />
-            <element signature="e#3123#3124#0" expanded="true" />
+            <element signature="e#26222#26223#0" expanded="true" />
+            <element signature="e#26265#26266#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/network/ClioteSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="753">
+          <caret line="93" column="36" lean-forward="true" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
+          <folding>
+            <element signature="e#1351#3005#0" expanded="true" />
+            <element signature="e#3004#3005#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/Enable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="122" column="38" lean-forward="true" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/estinet/ClioteSky/ClioteSky.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="43" column="8" lean-forward="true" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

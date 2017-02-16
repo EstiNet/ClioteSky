@@ -46,18 +46,15 @@ public class ClioteSocket extends Thread {
     @Override
     public void run() {
         final boolean[] closes = {true};
-        Thread thr = new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(30000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (socket.isClosed()){
-                        break;
-                    }
+                try {
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (!socket.isClosed()) {
                     if (recievedOutput == false) {
                         for (int i = 0; i < ClioteSky.categories.size(); i++) {
                             for (int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++) {
@@ -74,13 +71,13 @@ public class ClioteSocket extends Thread {
                         ClioteSky.printSignal("Cliote not responding! Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
                         ClioteSky.getConnections().remove(this);
                         closes[0] = false;
-                        break;
                     } else {
                         recievedOutput = false;
+                        run();
                     }
                 }
             }
-        });
+        }).start();
         int close = 0;
         BufferedReader in;
         while (closes[0]) {

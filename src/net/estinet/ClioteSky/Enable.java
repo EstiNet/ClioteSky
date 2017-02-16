@@ -23,15 +23,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 import net.estinet.ClioteSky.audio.MakeSound;
-import net.estinet.ClioteSky.commands.ClioteSockets;
-import net.estinet.ClioteSky.commands.Cliotes;
-import net.estinet.ClioteSky.commands.CreateCategory;
-import net.estinet.ClioteSky.commands.Debug;
-import net.estinet.ClioteSky.commands.Encrypt;
-import net.estinet.ClioteSky.commands.FlushSockets;
-import net.estinet.ClioteSky.commands.Help;
-import net.estinet.ClioteSky.commands.Key;
-import net.estinet.ClioteSky.commands.Stop;
+import net.estinet.ClioteSky.commands.*;
 import net.estinet.ClioteSky.configuration.Categories;
 import net.estinet.ClioteSky.configuration.Config;
 import net.estinet.ClioteSky.network.NetworkUtil;
@@ -131,6 +123,7 @@ final class Enable {
 		ClioteSky.commands.add(new ClioteSockets());
 		ClioteSky.commands.add(new FlushSockets());
 		ClioteSky.commands.add(new Debug());
+		ClioteSky.commands.add(new Version());
 		
 		/*
 		 * Start CommandSystem
