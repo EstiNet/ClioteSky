@@ -49,31 +49,35 @@ public class ClioteSocket extends Thread {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(30000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (!socket.isClosed()) {
-                    if (recievedOutput == false) {
-                        for (int i = 0; i < ClioteSky.categories.size(); i++) {
-                            for (int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++) {
-                                if (ClioteSky.categories.get(i).getCliotes().get(iter).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(iter).getPort().equals(Integer.toString(socket.getPort()))) {
-                                    ClioteSky.categories.get(i).getCliotes().get(iter).setIsOnline(false);
-                                    try {
-                                        socket.close();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                boolean cont = true;
+                while(cont) {
+                    cont = false;
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (!socket.isClosed()) {
+                        if (!recievedOutput) {
+                            for (int i = 0; i < ClioteSky.categories.size(); i++) {
+                                for (int iter = 0; iter < ClioteSky.categories.get(i).getCliotes().size(); iter++) {
+                                    if (ClioteSky.categories.get(i).getCliotes().get(iter).getIP().equals(NetworkUtil.getIP(socket)) && ClioteSky.categories.get(i).getCliotes().get(iter).getPort().equals(Integer.toString(socket.getPort()))) {
+                                        ClioteSky.categories.get(i).getCliotes().get(iter).setIsOnline(false);
+                                        try {
+                                            socket.close();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 }
                             }
+                            ClioteSky.printSignal("Cliote not responding! Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
+                            ClioteSky.getConnections().remove(this);
+                            closes[0] = false;
+                        } else {
+                            recievedOutput = false;
+                            cont = true;
                         }
-                        ClioteSky.printSignal("Cliote not responding! Connection closed with " + NetworkUtil.getIP(socket) + ":" + socket.getPort());
-                        ClioteSky.getConnections().remove(this);
-                        closes[0] = false;
-                    } else {
-                        recievedOutput = false;
-                        run();
                     }
                 }
             }
