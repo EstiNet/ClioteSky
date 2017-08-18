@@ -54,6 +54,10 @@ public class NetworkUtil {
 			//ADD ENCRYPTION HERE WHEN READY :D
 			outToServer.writeBytes(output + "\n");
 		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+			ClioteSky.fprintln("Recieving cliote may either not exist or is offline.");
+		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
