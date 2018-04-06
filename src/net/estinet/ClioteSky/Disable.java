@@ -17,8 +17,8 @@ limitations under the License.
 */
 
 public class Disable {
-	public void stop(){
-		ClioteSky.println("Stopping ClioteSky version " + ClioteSky.version + "...");
-		System.exit(0);
-	}
+    public void stop() {
+        ClioteSky.println("Stopping ClioteSky version " + ClioteSky.version + "...");
+        System.exit(0);
+    }
 }

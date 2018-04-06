@@ -50,7 +50,7 @@ public class ClioteSocket extends Thread {
             @Override
             public void run() {
                 boolean cont = true;
-                while(cont) {
+                while (cont) {
                     cont = false;
                     try {
                         Thread.sleep(30000);

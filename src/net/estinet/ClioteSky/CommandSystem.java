@@ -21,60 +21,48 @@ limitations under the License.
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CommandSystem {
-	protected void start(){
-		String input = null;
-		try {
-			input = ClioteSky.console.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-		String[] args = input.split("\\s+");
-		final List<String> argss = new ArrayList<>();
-		for(String str : args){
-			argss.add(str);
-		}
-		boolean lel = true;
-		for(final Command command : ClioteSky.commands){
-			if(command.getName().equalsIgnoreCase(args[0])){
-				lel = false;
-				final Thread thr = new Thread(new Runnable(){
-					public void run(){
-						command.run(argss);
-					}
-				});
-				thr.start();
-				if(!thr.isAlive()){
-					start();
-					break;
-				}
-				else{
-					Thread thr2 = new Thread(new Runnable(){
-						public void run(){
-							while(true){
-								if(!thr.isAlive()){
-									start();
-									break;
-								}
-								else{
-									try {
-										Thread.sleep(100);
-									} catch (InterruptedException e) {
-										e.printStackTrace();
-									}
-								}
-							}
-						}
-					});
-					thr2.start();
-				}
-			}
-		}
-		if(lel){
-			ClioteSky.fprintln("\n[System]: Command not recognized. :P");
-			start();
-		}
-	}
+    protected void start() {
+        String input;
+        input = new Scanner(System.in).nextLine();
+        String[] args = input.split("\\s+");
+        final List<String> argss = new ArrayList<>();
+        for (String str : args) {
+            argss.add(str);
+        }
+        boolean lel = true;
+        for (final Command command : ClioteSky.commands) {
+            if (command.getName().equalsIgnoreCase(args[0])) {
+                lel = false;
+                final Thread thr = new Thread(() -> command.run(argss));
+                thr.start();
+                if (!thr.isAlive()) {
+                    start();
+                    break;
+                } else {
+                    Thread thr2 = new Thread(() -> {
+                        while (true) {
+                            if (!thr.isAlive()) {
+                                start();
+                                break;
+                            } else {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+                    thr2.start();
+                }
+            }
+        }
+        if (lel) {
+            ClioteSky.fprintln("\n[System]: Command not recognized. :P");
+            start();
+        }
+    }
 }

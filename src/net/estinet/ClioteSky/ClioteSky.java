@@ -23,33 +23,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import jline.console.CursorBuffer;
 import net.estinet.ClioteSky.network.ClioteSocket;
 import net.estinet.ClioteSky.network.NetworkUtil;
 import net.estinet.ClioteSky.network.protocol.InputPacket;
 import net.estinet.ClioteSky.network.protocol.OutputPacket;
-import jline.console.ConsoleReader;
 
 public class ClioteSky {
-    public static String version = "1.2.0";
+    public static String version = "1.2.1";
     public static State state = State.ENABLING;
-    public static boolean exit = true;
     public static boolean debug = false;
     public static long commandid = 0;
     public static int port = 36000;
     public static PublicKey publickey = null;
     public static PrivateKey privatekey = null;
-    public static ConsoleReader console;
-
-    private static CursorBuffer stashed = null;
-
-    static {
-        try {
-            console = new ConsoleReader();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private static List<ClioteSocket> connections = new CopyOnWriteArrayList<>();
 
@@ -115,15 +101,11 @@ public class ClioteSky {
     }
 
     public static void println(String output) {
-        stashLine();
         System.out.println("[System]: " + output);
-        unstashLine();
     }
 
     public static void printSignal(String output) {
-        stashLine();
         System.out.println("[TCP]: " + output);
-        unstashLine();
     }
 
     public static String getPublicKey() {
@@ -146,26 +128,7 @@ public class ClioteSky {
      * Prints to console without any prefix.
      */
     public static void fprintln(String output) {
-        stashLine();
         System.out.println(output);
-        unstashLine();
     }
 
-    public static void stashLine() {
-        stashed = console.getCursorBuffer().copy();
-        try {
-            console.getOutput().write("\u001b[1G\u001b[K");
-            console.flush();
-        } catch (IOException e) {
-            // ignore
-        }
-    }
-
-    public static void unstashLine() {
-        try {
-            console.resetPromptLine(console.getPrompt(), stashed.toString(), stashed.cursor);
-        } catch (IOException e) {
-            // ignore
-        }
-    }
 }
