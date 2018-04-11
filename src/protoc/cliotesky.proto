@@ -10,12 +10,18 @@ message Empty {}
 message Token {
     string token = 1;
 }
+message ClioteMessage {
+    bytes data = 1;
+    string identifier = 2;
+    string sender = 3;
+}
 message ClioteResponse {
-    repeated bytes data = 1;
+    repeated ClioteMessage data = 1;
 }
 message ClioteSend {
     bytes data = 1;
-    string recipient = 2;
+    string identifier = 2;
+    string recipient = 3;
 }
 message AuthRequest {
     string user = 1;
