@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 service ClioteSkyService {
-    rpc Request(Token) returns (ClioteResponse);
+    rpc Request(Token) returns (stream ClioteMessage);
     rpc Send(ClioteSend) returns (Empty);
     rpc Auth(AuthRequest) returns (Token);
 }
@@ -15,13 +15,11 @@ message ClioteMessage {
     string identifier = 2;
     string sender = 3;
 }
-message ClioteResponse {
-    repeated ClioteMessage data = 1;
-}
 message ClioteSend {
     bytes data = 1;
-    string identifier = 2;
-    string recipient = 3;
+    string token = 2;
+    string identifier = 3;
+    string recipient = 4;
 }
 message AuthRequest {
     string user = 1;
