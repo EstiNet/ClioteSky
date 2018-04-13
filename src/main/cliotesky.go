@@ -3,16 +3,17 @@ package main
 import (
 	pb "../protoc"
 	"context"
-	"google.golang.org/grpc"
-	"net"
-	"log"
-	"fmt"
-	"github.com/tucnak/store"
-	"os"
-	"io/ioutil"
-	"github.com/BurntSushi/toml"
 	"errors"
-	"github.com/nu7hatch/gouuid"
+	"fmt"
+	"github.com/BurntSushi/toml"
+	"google.golang.org/grpc"
+	"io/ioutil"
+	"log"
+	"net"
+	"os"
+	"strconv"
+	"math/rand"
+	"time"
 )
 
 var (
@@ -38,15 +39,11 @@ type Cliote struct {
 }
 
 type CSConfig struct {
-	Port         string            `toml:"port"`
+	Port         int64            `toml:"port"`
 	MasterKeyLoc string            `toml:"master_key_location"`
 	CertFile     string            `toml:"cert_file_path"`
 	KeyFile      string            `toml:"key_file_path"`
 	Cliotes      map[string]Cliote `toml:"clients"`
-}
-
-func init() {
-	store.Init("./config")
 }
 
 func main() {
@@ -61,65 +58,139 @@ func main() {
 		}
 		file.Close()
 
-		err = ioutil.WriteFile(configPath, "config.conf", 0644)
+		err = ioutil.WriteFile(configPath, []byte(defConfig), 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
 		fmt.Println("Created config file!")
 	}
 
+	fmt.Println("Loading config...")
 	//marshal toml
 	if _, err := toml.DecodeFile(configPath, &csConfig); err != nil {
 		fmt.Println(err)
 		return
 	}
+	fmt.Println("Loaded!")
 
-	lis, err := net.Listen("tcp", "36000")
+	//check if master key exists
+	_, err = os.Stat(csConfig.MasterKeyLoc)
+	if os.IsNotExist(err) {
+		fmt.Println("Master key not found, creating new one.")
+		masterKey = RandStringBytesMaskSrc(3000)
+		err = ioutil.WriteFile(csConfig.MasterKeyLoc, []byte(masterKey), 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		dat, err := ioutil.ReadFile(csConfig.MasterKeyLoc)
+		if err != nil {
+			log.Fatal(err)
+		}
+		masterKey = string(dat)
+	}
+
+	//start grpc
+	lis, err := net.Listen("tcp", ":" + strconv.Itoa(int(csConfig.Port)))
 	if err != nil {
 		log.Fatal("Oh no! IPC listen error (check if the port has been taken):" + err.Error())
 	}
 
 	grpcServer = grpc.NewServer()
 	pb.RegisterClioteSkyServiceServer(grpcServer, &ClioteSkyService{})
+	fmt.Println("Starting gRPC Server...")
 	grpcServer.Serve(lis)
 }
 
 // gRPC Implemented Functions
 
-func (clioteskyservice *ClioteSkyService) Request(ctx context.Context, token *pb.Token) (pb.ClioteSkyService_RequestClient, error) {
+func (clioteskyservice *ClioteSkyService) Request(token *pb.Token, stream pb.ClioteSkyService_RequestServer) error {
 	user, ok := tokens[token.Token]
 	if !ok {
-		return stream, invalidToken;
+		return invalidToken
 	}
 	messages, ok := requests[user]
 	if ok {
-		return &pb.ClioteResponse{Data: &messages}, nil;
+		for _, message := range messages {
+			if err := stream.Send(&message); err != nil {
+				return err
+			}
+		}
 	}
-	return nil;
+	return nil
 }
 
 func (clioteskyservice *ClioteSkyService) Send(ctx context.Context, send *pb.ClioteSend) (*pb.Empty, error) {
 	user, ok := tokens[send.Token]
 	if !ok {
-		return &pb.Empty{}, invalidToken;
+		return &pb.Empty{}, invalidToken
 	}
-	requests[send.Recipient] = append(requests[send.Recipient], pb.ClioteMessage{Data: send.Data, Identifier: send.Identifier, Sender: user})
-	return &pb.Empty{}, nil;
+
+	for _, cliote := range csConfig.Cliotes {
+		if cliote.Name == send.Recipient || cliote.Category == send.Recipient {
+			requests[cliote.Name] = append(requests[cliote.Name], pb.ClioteMessage{Data: send.Data, Identifier: send.Identifier, Sender: user})
+		}
+	}
+	return &pb.Empty{}, nil
 }
 
 func (clioteskyservice *ClioteSkyService) Auth(ctx context.Context, auth *pb.AuthRequest) (*pb.Token, error) {
 	if auth.Password == masterKey {
-		return &pb.Token{Token: getNewToken(auth.User)}, nil;
+
+		for _, cliote := range csConfig.Cliotes {
+			if cliote.Name == auth.User {
+				return &pb.Token{Token: getNewToken(auth.User)}, nil
+			}
+		}
+		return &pb.Token{}, errors.New("invalid name")
 	}
-	return &pb.Token{}, errors.New("invalid password");
+	return &pb.Token{}, errors.New("invalid master key")
 }
 
 func getNewToken(user string) (strToken string) { //TODO token expiry date
-	token, err := uuid.NewV4()
-	if err != nil {
-		log.Fatal("Can't obtain a new token for " + user + " " + err.Error())
-	}
-	strToken = token.String()
+	strToken = RandStringBytesMaskSrc(100)
 	if _, ok := tokens[strToken]; ok { //get new token if it's already taken
 		strToken = getNewToken(user) //hopefully doesn't stack overflow
 	}
 	tokens[strToken] = user
 	return
 }
+
+//Random string generator
+
+var src = rand.NewSource(time.Now().UnixNano())
+
+const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const (
+	letterIdxBits = 6                    // 6 bits to represent a letter index
+	letterIdxMask = 1<<letterIdxBits - 1 // All 1-bits, as many as letterIdxBits
+	letterIdxMax  = 63 / letterIdxBits   // # of letter indices fitting in 63 bits
+)
+
+func RandStringBytesMaskSrc(n int) string {
+	b := make([]byte, n)
+	// A src.Int63() generates 63 random bits, enough for letterIdxMax characters!
+	for i, cache, remain := n-1, src.Int63(), letterIdxMax; i >= 0; {
+		if remain == 0 {
+			cache, remain = src.Int63(), letterIdxMax
+		}
+		if idx := int(cache & letterIdxMask); idx < len(letterBytes) {
+			b[i] = letterBytes[idx]
+			i--
+		}
+		cache >>= letterIdxBits
+		remain--
+	}
+
+	return string(b)
+}
+
+//Default config string
+const defConfig = `port = 36000
+master_key_location = "./masterkey.key"
+cert_file_location = "./server.crt"
+key_file_location = "./server.key"
+
+[cliotes]
+    [client]
+    category = "default"`
