@@ -21,8 +21,9 @@ var (
 
 	csConfig   CSConfig
 	grpcServer *grpc.Server
-	tokens     map[string]string //token to name
-	requests   map[string][]pb.ClioteMessage
+	tokens     = make(map[string]string) //token to name
+	requests   = make(map[string][]pb.ClioteMessage)
+	cliotes    = make(map[string][]string) //category to name
 
 	configPath   = "./config.conf"
 	invalidToken = errors.New("invalid authentication token")
@@ -33,17 +34,11 @@ var (
 //gRPC
 type ClioteSkyService struct{}
 
-type Cliote struct {
-	Name     string `toml:"name"`
-	Category string `toml:"category"`
-}
-
 type CSConfig struct {
-	Port         int64            `toml:"port"`
+	Port         int64             `toml:"port"`
 	MasterKeyLoc string            `toml:"master_key_location"`
 	CertFile     string            `toml:"cert_file_path"`
 	KeyFile      string            `toml:"key_file_path"`
-	Cliotes      map[string]Cliote `toml:"clients"`
 }
 
 func main() {
@@ -91,7 +86,7 @@ func main() {
 	}
 
 	//start grpc
-	lis, err := net.Listen("tcp", ":" + strconv.Itoa(int(csConfig.Port)))
+	lis, err := net.Listen("tcp", ":"+strconv.Itoa(int(csConfig.Port)))
 	if err != nil {
 		log.Fatal("Oh no! IPC listen error (check if the port has been taken):" + err.Error())
 	}
@@ -116,6 +111,7 @@ func (clioteskyservice *ClioteSkyService) Request(token *pb.Token, stream pb.Cli
 				return err
 			}
 		}
+		requests[user] = make([]pb.ClioteMessage, 0);
 	}
 	return nil
 }
@@ -126,25 +122,43 @@ func (clioteskyservice *ClioteSkyService) Send(ctx context.Context, send *pb.Cli
 		return &pb.Empty{}, invalidToken
 	}
 
-	for _, cliote := range csConfig.Cliotes {
-		if cliote.Name == send.Recipient || cliote.Category == send.Recipient {
-			requests[cliote.Name] = append(requests[cliote.Name], pb.ClioteMessage{Data: send.Data, Identifier: send.Identifier, Sender: user})
+	fmt.Println("[INFO] " + user + " sent " + string(send.Data) + " to " + send.Recipient + ".");
+
+	for key, category := range cliotes {
+		for _, cliote := range category {
+			if send.Recipient == "all" || key == send.Recipient || cliote == send.Recipient {
+				requests[cliote] = append(requests[cliote], pb.ClioteMessage{Data: send.Data, Identifier: send.Identifier, Sender: user})
+			}
 		}
 	}
 	return &pb.Empty{}, nil
 }
 
 func (clioteskyservice *ClioteSkyService) Auth(ctx context.Context, auth *pb.AuthRequest) (*pb.Token, error) {
+	//caveat: users can sign up twice with different categories
 	if auth.Password == masterKey {
 
-		for _, cliote := range csConfig.Cliotes {
-			if cliote.Name == auth.User {
-				return &pb.Token{Token: getNewToken(auth.User)}, nil
-			}
+		if v, ok := cliotes[auth.Category]; ok {
+			v = append(v, auth.User)
+		} else {
+			cliotes[auth.Category] = []string{auth.User}
 		}
-		return &pb.Token{}, errors.New("invalid name")
+
+		fmt.Println("[INFO] " + auth.User + " has authenticated.");
+		return &pb.Token{Token: getNewToken(auth.User)}, nil
 	}
 	return &pb.Token{}, errors.New("invalid master key")
+}
+
+func (clioteskyservice *ClioteSkyService) CheckNameTaken(ctx context.Context, string *pb.String) (*pb.Boolean, error) {
+	for _, category := range cliotes {
+		for _, cliote := range category {
+			if cliote == string.Str {
+				return &pb.Boolean{B: true}, nil;
+			}
+		}
+	}
+	return &pb.Boolean{B: false}, nil;
 }
 
 func getNewToken(user string) (strToken string) { //TODO token expiry date
@@ -189,8 +203,4 @@ func RandStringBytesMaskSrc(n int) string {
 const defConfig = `port = 36000
 master_key_location = "./masterkey.key"
 cert_file_location = "./server.crt"
-key_file_location = "./server.key"
-
-[cliotes]
-    [client]
-    category = "default"`
+key_file_location = "./server.key"`
