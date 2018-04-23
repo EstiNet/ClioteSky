@@ -14,6 +14,7 @@ import (
 	"strconv"
 	"math/rand"
 	"time"
+	"google.golang.org/grpc/credentials"
 )
 
 var (
@@ -91,7 +92,13 @@ func main() {
 		log.Fatal("Oh no! IPC listen error (check if the port has been taken):" + err.Error())
 	}
 
-	grpcServer = grpc.NewServer()
+	//ssl
+	creds, err := credentials.NewServerTLSFromFile(csConfig.CertFile, csConfig.KeyFile)
+	if err != nil {
+		log.Fatal("Unable to use tls key files, check the directory. " + csConfig.CertFile + " : " + csConfig.KeyFile + ". Error: " + err.Error())
+	}
+
+	grpcServer = grpc.NewServer(grpc.Creds(creds))
 	pb.RegisterClioteSkyServiceServer(grpcServer, &ClioteSkyService{})
 	fmt.Println("Starting gRPC Server...")
 	grpcServer.Serve(lis)
@@ -202,5 +209,5 @@ func RandStringBytesMaskSrc(n int) string {
 //Default config string
 const defConfig = `port = 36000
 master_key_location = "./masterkey.key"
-cert_file_location = "./server.crt"
-key_file_location = "./server.key"`
+cert_file_path = "./server.crt"
+key_file_path = "./server.key"`
