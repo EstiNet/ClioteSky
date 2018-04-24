@@ -22,9 +22,9 @@ var (
 
 	csConfig   CSConfig
 	grpcServer *grpc.Server
-	tokens     = make(map[string]string) //token to name
-	requests   = make(map[string][]pb.ClioteMessage)
-	cliotes    = make(map[string][]string) //category to name
+	//tokens     = make(map[string]string) //token to name
+	//requests   = make(map[string][]pb.ClioteMessage)
+	//cliotes    = make(map[string][]string) //category to name
 
 	configPath   = "./config.conf"
 	invalidToken = errors.New("invalid authentication token")
