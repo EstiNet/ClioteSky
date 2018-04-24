@@ -16,6 +16,9 @@ import (
 	"time"
 	"google.golang.org/grpc/credentials"
 	"sync"
+	"bufio"
+	"io"
+	"strings"
 )
 
 var (
@@ -102,10 +105,67 @@ func main() {
 		log.Fatal("Unable to use tls key files, check the directory. " + csConfig.CertFile + " : " + csConfig.KeyFile + ". Error: " + err.Error())
 	}
 
+	go startCommands() //start command line
+
 	grpcServer = grpc.NewServer(grpc.Creds(creds))
 	pb.RegisterClioteSkyServiceServer(grpcServer, &ClioteSkyService{})
 	fmt.Println("Starting gRPC Server...")
 	grpcServer.Serve(lis)
+}
+
+func startCommands() {
+	var reader = bufio.NewReader(os.Stdin)
+	for { //command line loop
+		input, err := reader.ReadString('\n')
+		if err == io.EOF {
+			time.Sleep(100 * time.Millisecond)
+			continue
+		}
+		if err != nil {
+			println(err.Error())
+		}
+		input = strings.TrimRight(input, "\n")
+		str := strings.Split(input, " ")
+		switch str[0] {
+		case "help":
+			fmt.Println("-----Help-----")
+			fmt.Println("cliotes  | List all of the cliotes.")
+			fmt.Println("requests | List all of the requests waiting for cliotes.")
+			fmt.Println("tokens   | List the token allocation.")
+			break
+		case "cliotes":
+			fmt.Println("Categories:\n-----------")
+			f := func(key, value interface{}) bool {
+				fmt.Println(key.(string) + ":")
+				for _, cliote := range value.([]string) {
+					fmt.Println("  " + cliote)
+				}
+				return true
+			}
+
+			cliotes.Range(f)
+			break
+		case "requests":
+			fmt.Println("Messages:\n----------")
+			f := func(key, value interface{}) bool {
+				fmt.Println(key.(string) + ":")
+				for _, message := range value.([]pb.ClioteMessage) {
+					fmt.Println(message.Sender + " " + message.Identifier + " " + string(message.Data))
+				}
+				return true
+			}
+			requests.Range(f)
+			break
+		case "tokens":
+			fmt.Println("Tokens:\n----------")
+			f := func(key, value interface{}) bool {
+				fmt.Println(key.(string) + " : " + value.(string))
+				return true
+			}
+			tokens.Range(f)
+			break
+		}
+	}
 }
 
 // gRPC Implemented Functions
@@ -123,7 +183,6 @@ func (clioteskyservice *ClioteSkyService) Request(token *pb.Token, stream pb.Cli
 			}
 		}
 		requests.Delete(user)
-		fmt.Println(requests)
 	}
 	return nil
 }
@@ -161,7 +220,15 @@ func (clioteskyservice *ClioteSkyService) Auth(ctx context.Context, auth *pb.Aut
 
 		if _, ok := cliotes.Load(auth.Category); ok {
 			v, _ := cliotes.Load(auth.Category)
-			cliotes.Store(auth.Category, append(v.([]string), auth.User))
+			add := true
+			for _, val := range v.([]string) {
+				if val == auth.User {
+					add = false
+				}
+			}
+			if (add) {
+				cliotes.Store(auth.Category, append(v.([]string), auth.User))
+			}
 		} else {
 			cliotes.Store(auth.Category, []string{auth.User})
 		}
