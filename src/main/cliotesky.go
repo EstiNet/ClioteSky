@@ -15,6 +15,7 @@ import (
 	"math/rand"
 	"time"
 	"google.golang.org/grpc/credentials"
+	"sync"
 )
 
 var (
@@ -25,6 +26,9 @@ var (
 	//tokens     = make(map[string]string) //token to name
 	//requests   = make(map[string][]pb.ClioteMessage)
 	//cliotes    = make(map[string][]string) //category to name
+	tokens   = sync.Map{}
+	requests = sync.Map{}
+	cliotes  = sync.Map{}
 
 	configPath   = "./config.conf"
 	invalidToken = errors.New("invalid authentication token")
@@ -107,36 +111,47 @@ func main() {
 // gRPC Implemented Functions
 
 func (clioteskyservice *ClioteSkyService) Request(token *pb.Token, stream pb.ClioteSkyService_RequestServer) error {
-	user, ok := tokens[token.Token]
+	user, ok := tokens.Load(token.Token)
 	if !ok {
 		return invalidToken
 	}
-	messages, ok := requests[user]
+	messages, ok := requests.Load(user)
 	if ok {
-		for _, message := range messages {
+		for _, message := range messages.([]pb.ClioteMessage) {
 			if err := stream.Send(&message); err != nil {
 				return err
 			}
 		}
-		requests[user] = make([]pb.ClioteMessage, 0);
+		requests.Delete(user)
+		fmt.Println(requests)
 	}
 	return nil
 }
 
 func (clioteskyservice *ClioteSkyService) Send(ctx context.Context, send *pb.ClioteSend) (*pb.Empty, error) {
-	user, ok := tokens[send.Token]
+	user, ok := tokens.Load(send.Token)
 	if !ok {
 		return &pb.Empty{}, invalidToken
 	}
 
-	fmt.Println("[INFO] " + user + " sent " + string(send.Data) + " to " + send.Recipient + ".");
-	for key, category := range cliotes {
-		for _, cliote := range category {
+	fmt.Println("[INFO] " + user.(string) + " sent " + send.Identifier + " " + string(send.Data) + " to " + send.Recipient + ".");
+	f := func(key, value interface{}) bool {
+		for _, cliote := range value.([]string) {
 			if send.Recipient == "all" || key == send.Recipient || cliote == send.Recipient {
-				requests[cliote] = append(requests[cliote], pb.ClioteMessage{Data: send.Data, Identifier: send.Identifier, Sender: user})
+				v, _ := requests.Load(cliote)
+				var nv []pb.ClioteMessage
+				if v == nil {
+					nv = make([]pb.ClioteMessage, 0)
+				} else {
+					nv = v.([]pb.ClioteMessage)
+				}
+				requests.Store(cliote, append(nv, pb.ClioteMessage{Data: send.Data, Identifier: send.Identifier, Sender: user.(string)}))
 			}
 		}
+		return true
 	}
+
+	cliotes.Range(f)
 	return &pb.Empty{}, nil
 }
 
@@ -144,10 +159,11 @@ func (clioteskyservice *ClioteSkyService) Auth(ctx context.Context, auth *pb.Aut
 	//caveat: users can sign up twice with different categories
 	if auth.Password == masterKey {
 
-		if _, ok := cliotes[auth.Category]; ok {
-			cliotes[auth.Category] = append(cliotes[auth.Category], auth.User)
+		if _, ok := cliotes.Load(auth.Category); ok {
+			v, _ := cliotes.Load(auth.Category)
+			cliotes.Store(auth.Category, append(v.([]string), auth.User))
 		} else {
-			cliotes[auth.Category] = []string{auth.User}
+			cliotes.Store(auth.Category, []string{auth.User})
 		}
 
 		fmt.Println("[INFO] " + auth.User + " has authenticated.");
@@ -156,23 +172,29 @@ func (clioteskyservice *ClioteSkyService) Auth(ctx context.Context, auth *pb.Aut
 	return &pb.Token{}, errors.New("invalid master key")
 }
 
-func (clioteskyservice *ClioteSkyService) CheckNameTaken(ctx context.Context, string *pb.String) (*pb.Boolean, error) {
-	for _, category := range cliotes {
-		for _, cliote := range category {
-			if cliote == string.Str {
-				return &pb.Boolean{B: true}, nil;
+func (clioteskyservice *ClioteSkyService) CheckNameTaken(ctx context.Context, strin *pb.String) (*pb.Boolean, error) {
+
+	ret := false
+
+	f := func(key, value interface{}) bool {
+		for _, cliote := range value.([]string) {
+			if cliote == strin.Str {
+				ret = true
 			}
 		}
+		return true
 	}
-	return &pb.Boolean{B: false}, nil;
+
+	cliotes.Range(f)
+	return &pb.Boolean{B: ret}, nil;
 }
 
 func getNewToken(user string) (strToken string) { //TODO token expiry date
 	strToken = RandStringBytesMaskSrc(100)
-	if _, ok := tokens[strToken]; ok { //get new token if it's already taken
+	if _, ok := tokens.Load(strToken); ok { //get new token if it's already taken
 		strToken = getNewToken(user) //hopefully doesn't stack overflow
 	}
-	tokens[strToken] = user
+	tokens.Store(strToken, user)
 	return
 }
 
