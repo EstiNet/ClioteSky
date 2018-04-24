@@ -36,10 +36,10 @@ var (
 type ClioteSkyService struct{}
 
 type CSConfig struct {
-	Port         int64             `toml:"port"`
-	MasterKeyLoc string            `toml:"master_key_location"`
-	CertFile     string            `toml:"cert_file_path"`
-	KeyFile      string            `toml:"key_file_path"`
+	Port         int64  `toml:"port"`
+	MasterKeyLoc string `toml:"master_key_location"`
+	CertFile     string `toml:"cert_file_path"`
+	KeyFile      string `toml:"key_file_path"`
 }
 
 func main() {
@@ -130,7 +130,6 @@ func (clioteskyservice *ClioteSkyService) Send(ctx context.Context, send *pb.Cli
 	}
 
 	fmt.Println("[INFO] " + user + " sent " + string(send.Data) + " to " + send.Recipient + ".");
-
 	for key, category := range cliotes {
 		for _, cliote := range category {
 			if send.Recipient == "all" || key == send.Recipient || cliote == send.Recipient {
@@ -145,8 +144,8 @@ func (clioteskyservice *ClioteSkyService) Auth(ctx context.Context, auth *pb.Aut
 	//caveat: users can sign up twice with different categories
 	if auth.Password == masterKey {
 
-		if v, ok := cliotes[auth.Category]; ok {
-			v = append(v, auth.User)
+		if _, ok := cliotes[auth.Category]; ok {
+			cliotes[auth.Category] = append(cliotes[auth.Category], auth.User)
 		} else {
 			cliotes[auth.Category] = []string{auth.User}
 		}
