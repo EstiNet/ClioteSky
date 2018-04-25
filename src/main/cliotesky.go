@@ -29,9 +29,10 @@ var (
 	//tokens     = make(map[string]string) //token to name
 	//requests   = make(map[string][]pb.ClioteMessage)
 	//cliotes    = make(map[string][]string) //category to name
-	tokens   = sync.Map{}
-	requests = sync.Map{}
-	cliotes  = sync.Map{}
+	tokens    = sync.Map{}
+	requests  = sync.Map{}
+	cliotes   = sync.Map{}
+	lastCheck = sync.Map{} //cliote name to unix timestamp
 
 	configPath   = "./config.conf"
 	invalidToken = errors.New("invalid authentication token")
@@ -111,6 +112,29 @@ func main() {
 	pb.RegisterClioteSkyServiceServer(grpcServer, &ClioteSkyService{})
 	fmt.Println("Starting gRPC Server...")
 	grpcServer.Serve(lis)
+}
+
+/*
+ * Purges cliotes that have not requested for data within the last day
+ */
+
+func purgeOldCliotes() {
+	f := func(key, value interface{}) bool {
+		if value.(int64) < time.Now().Unix()-86400 { //one day
+			fl := func(key, value interface{}) bool { //remove cliote
+				for _, cliote := range value.([]string) {
+					if cliote == key {
+						value.([]string)
+						break
+					}
+				}
+				return true;
+			}
+			cliotes.Range(fl)
+		}
+		return true
+	}
+	lastCheck.Range(f)
 }
 
 func startCommands() {
