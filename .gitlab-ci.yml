@@ -3,7 +3,7 @@ before_script:
   - mkdir bin
   - export PATH=$PATH:/usr/local/go/bin
 
-build_esticonsole:
+build_cliotesky:
   script:
     - go get google.golang.org/grpc
     - go get github.com/BurntSushi/toml
