@@ -1,6 +1,6 @@
 # ClioteSky
 
-A reasonably secure yet simple proxy for protobufs with an easy to implement API (simple RabbitMQ).
+A reasonably simple, yet secure proxy for protobufs with an easy to implement API (simple RabbitMQ).
 
 ## Installation
 
@@ -16,12 +16,12 @@ $ openssl genrsa -out server.key 2048
 $ openssl req -new -x509 -sha256 -key server.key -out server.crt -days 3650
 ```
 
-You are now complete!
+The install is now complete!
 Simply run the binary to start the program.
 
 ## Configuration
 
-Initial Config:
+Initial config.yml file:
 ```
 port = 36000
 master_key_location = "./masterkey.key"
@@ -57,3 +57,22 @@ Run the buildEverything.sh script to build the binaries and place them in the bi
 ```bash
 $ ./buildEverything.sh
 ```
+
+## API Specification SECTION WIP
+
+Note: This assumes that the developer has knowledge of GRPC.
+<br><br>
+Creating a client requires an implementation of [GRPC](https://grpc.io) in the client language. The library abstracts method calls over sockets, allowing for simple API definitions.
+<br>
+Once you have added GRPC to your project, be sure to generate a [protobuf](https://developers.google.com/protocol-buffers/) spec file and a grpc spec file from the ClioteSky protocol definition (this [file](https://github.com/EstiNet/ClioteSky/blob/master/src/protoc/cliotesky.proto)).
+### Specified Types
+| Type          | Description |
+|---------------|-------------|
+| String        | Simple wrapper for a string object.
+| Boolean       | Simple wrapper for a boolean object.
+| Empty         | Empty variable
+| Token         | Contains a string that specifies the user token.
+| ClioteMessage | Contains data (bytes), identifier (string), and sender (string).
+| ClioteSend    | Contains
+| AuthRequest   |
+### ClioteSkyService Function Calls
