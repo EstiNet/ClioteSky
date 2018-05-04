@@ -46,12 +46,14 @@ $ git clone https://github.com/EstiNet/ClioteSky.git
 ```
 <br>
 Obtain these dependencies:
+
 ```bash
 $ go get google.golang.org/grpc
 $ go get github.com/BurntSushi/toml
 ```
 <br>
 Run the buildEverything.sh script to build the binaries and place them in the bin folder.
+
 ```bash
 $ ./buildEverything.sh
 ```
