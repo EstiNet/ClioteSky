@@ -2,7 +2,6 @@ package main
 
 import (
 	pb "../protoc"
-	"context"
 	"errors"
 	"fmt"
 	"github.com/BurntSushi/toml"
@@ -12,13 +11,14 @@ import (
 	"net"
 	"os"
 	"strconv"
-	"math/rand"
 	"time"
 	"google.golang.org/grpc/credentials"
 	"sync"
 	"bufio"
 	"io"
 	"strings"
+	"math/rand"
+	"context"
 )
 
 var (
@@ -108,6 +108,11 @@ func main() {
 
 	go startCommands() //start command line
 
+	go func() {
+		time.Sleep(5 * time.Minute)
+		purgeOldCliotes()
+	}() //start cliote purge task
+
 	grpcServer = grpc.NewServer(grpc.Creds(creds))
 	pb.RegisterClioteSkyServiceServer(grpcServer, &ClioteSkyService{})
 	fmt.Println("Starting gRPC Server...")
@@ -122,12 +127,15 @@ func purgeOldCliotes() {
 	f := func(key, value interface{}) bool {
 		if value.(int64) < time.Now().Unix()-86400 { //one day
 			fl := func(key, value interface{}) bool { //remove cliote
+				newArr := []string{}
 				for _, cliote := range value.([]string) {
-					if cliote == key {
-						value.([]string)
+					if cliote != key {
+						newArr = append(newArr, cliote)
 						break
 					}
 				}
+				cliotes.Delete(key)
+				cliotes.Store(key, newArr) //TODO check if thread safe
 				return true;
 			}
 			cliotes.Range(fl)
@@ -136,6 +144,10 @@ func purgeOldCliotes() {
 	}
 	lastCheck.Range(f)
 }
+
+/*
+ * Starts loop that takes in input for commands
+ */
 
 func startCommands() {
 	var reader = bufio.NewReader(os.Stdin)
@@ -156,6 +168,7 @@ func startCommands() {
 			fmt.Println("cliotes  | List all of the cliotes.")
 			fmt.Println("requests | List all of the requests waiting for cliotes.")
 			fmt.Println("tokens   | List the token allocation.")
+			fmt.Println("clean    | Removes cliotes that have not connected within a day.")
 			break
 		case "cliotes":
 			fmt.Println("Categories:\n-----------")
@@ -187,6 +200,10 @@ func startCommands() {
 				return true
 			}
 			tokens.Range(f)
+			break
+		case "clean":
+			purgeOldCliotes()
+			fmt.Println("Old cliotes purged.")
 			break
 		}
 	}
