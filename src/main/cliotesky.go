@@ -297,7 +297,7 @@ func (clioteskyservice *ClioteSkyService) CheckNameTaken(ctx context.Context, st
 	return &pb.Boolean{B: ret}, nil;
 }
 
-func getNewToken(user string) (strToken string) { //TODO token expiry date
+func getNewToken(user string) (strToken string) {
 	strToken = RandStringBytesMaskSrc(100)
 	if _, ok := tokens.Load(strToken); ok { //get new token if it's already taken
 		strToken = getNewToken(user) //hopefully doesn't stack overflow
