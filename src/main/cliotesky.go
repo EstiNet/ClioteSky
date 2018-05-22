@@ -305,7 +305,7 @@ func getNewToken(user string) (strToken string) {
 	tokens.Store(strToken, user)
 	go func() {
 		//token expiry
-		time.Sleep(time.Hour)
+		time.Sleep(time.Hour * 48) //regen every 2 days
 		tokens.Delete(strToken)
 	}()
 	return
