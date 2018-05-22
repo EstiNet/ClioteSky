@@ -234,7 +234,12 @@ func (clioteskyservice *ClioteSkyService) Send(ctx context.Context, send *pb.Cli
 		return &pb.Empty{}, invalidToken
 	}
 
-	fmt.Println("[INFO] " + user.(string) + " sent " + send.Identifier + " " + string(send.Data) + " to " + send.Recipient + ".");
+	fmt.Println("[INFO] " + user.(string) + " sent " + send.Identifier + " " + string(send.Data) + " to " + send.Recipient + ".")
+
+	if send.Recipient == "cliotesky" {
+		csReceive(send)
+	}
+
 	f := func(key, value interface{}) bool {
 		for _, cliote := range value.([]string) {
 			if send.Recipient == "all" || key == send.Recipient || cliote == send.Recipient {
