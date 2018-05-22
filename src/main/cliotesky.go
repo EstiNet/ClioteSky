@@ -303,6 +303,11 @@ func getNewToken(user string) (strToken string) { //TODO token expiry date
 		strToken = getNewToken(user) //hopefully doesn't stack overflow
 	}
 	tokens.Store(strToken, user)
+	go func() {
+		//token expiry
+		time.Sleep(time.Hour)
+		tokens.Delete(strToken)
+	}()
 	return
 }
 
