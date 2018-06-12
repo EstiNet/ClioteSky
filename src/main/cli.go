@@ -10,6 +10,9 @@ func csReceive(send *pb.ClioteSend) {
 	case "mg stop":
 	case "mg add":
 	case "mg requestid":
+	case "hub add":
+	case "hub remove":
+	case "hub join":
 	}
 }
 
