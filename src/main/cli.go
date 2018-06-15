@@ -4,6 +4,10 @@ import (
 	pb "../protoc"
 )
 
+type Hub struct {
+	Name string
+}
+
 func csReceive(send *pb.ClioteSend) {
 	switch send.Identifier {
 	case "mg start":
@@ -13,6 +17,7 @@ func csReceive(send *pb.ClioteSend) {
 	case "hub add":
 	case "hub remove":
 	case "hub join":
+	case "hub list":
 	}
 }
 
